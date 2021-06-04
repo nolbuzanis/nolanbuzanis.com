@@ -1,0 +1,56 @@
+import styled from 'styled-components';
+import ArticleCard from './article-card';
+
+interface ArticleListProps {
+  items: Post[];
+}
+
+const Grid = styled.div<{ even: boolean }>`
+  display: grid;
+  margin: 0;
+  padding: 0;
+  grid-template-columns: ${(props) => (props.even ? '3fr 2fr' : '2fr 3fr')};
+  column-gap: 30px;
+  margin-bottom: 75px;
+  @media only screen and (max-width: 1280px) {
+    grid-template-columns: 1fr 1fr;
+  }
+  @media only screen and (max-width: 735px) {
+    grid-template-columns: 1fr;
+  }
+`;
+
+const splitArrayIntoMultiple = (originalArray: Post[]): Post[][] => {
+  const rowSize = 2;
+  const arrayOfArrays: Post[][] = [];
+  for (let i = 0; i < originalArray.length; i += rowSize) {
+    arrayOfArrays.push(originalArray.slice(i, i + rowSize));
+  }
+  return arrayOfArrays;
+};
+
+const ArticleList = ({ items }: ArticleListProps): JSX.Element => {
+  const splitArray = splitArrayIntoMultiple(items);
+
+  return (
+    <div>
+      {splitArray.map((shortArray, i) => (
+        // eslint-disable-next-line react/no-array-index-key
+        <Grid key={i} even={i % 2 === 0}>
+          {shortArray.map((item) => (
+            <ArticleCard
+              key={item.id}
+              title={item.title}
+              img={item.img}
+              description={item.description}
+              timeToRead={item.time}
+              date={item.date}
+            />
+          ))}
+        </Grid>
+      ))}
+    </div>
+  );
+};
+
+export default ArticleList;
