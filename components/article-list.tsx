@@ -18,6 +18,9 @@ const Grid = styled.div<{ even: boolean }>`
   @media only screen and (max-width: 735px) {
     grid-template-columns: 1fr;
   }
+  @media only screen and (max-width: 540px) {
+    margin: 0;
+  }
 `;
 
 const splitArrayIntoMultiple = (originalArray: Post[]): Post[][] => {

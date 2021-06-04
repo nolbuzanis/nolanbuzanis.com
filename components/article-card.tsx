@@ -23,6 +23,11 @@ const StyledAnchor = styled.a`
       transition: color 0.3s ease-in-out;
     }
   }
+  @media only screen and (max-width: 540px) {
+    border-radius: 5px;
+    box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.2);
+    margin-bottom: 40px;
+  }
 `;
 
 const ImgContainer = styled(LazyLoadImage)`
@@ -35,11 +40,17 @@ const ImgContainer = styled(LazyLoadImage)`
   @media only screen and (max-width: 735px) {
     height: 220px;
   }
+  @media only screen and (max-width: 540px) {
+    height: 200px;
+  }
   transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease !important;
 `;
 
 const ArticleTitle = styled.h2`
   margin-bottom: 10px;
+  @media only screen and (max-width: 540px) {
+    font-size: 22px;
+  }
 `;
 
 const DateAndTimeText = styled.p`
@@ -49,6 +60,12 @@ const DateAndTimeText = styled.p`
 
 const Description = styled.p`
   margin-bottom: 10px;
+`;
+
+const TextContainer = styled.div`
+  @media only screen and (max-width: 540px) {
+    padding: 0 20px 30px;
+  }
 `;
 
 const ArticleCard = ({
@@ -74,9 +91,11 @@ const ArticleCard = ({
           src={img} // use normal <img> attributes as props
         />
         {/* <Img src={img} alt={title} /> */}
-        <ArticleTitle>{title}</ArticleTitle>
-        <Description>{description}</Description>
-        <DateAndTimeText>{`${readableDate} - ${timeToRead.toString()} min read`}</DateAndTimeText>
+        <TextContainer>
+          <ArticleTitle>{title}</ArticleTitle>
+          <Description>{description}</Description>
+          <DateAndTimeText>{`${readableDate} - ${timeToRead.toString()} min read`}</DateAndTimeText>
+        </TextContainer>
       </StyledAnchor>
     </Link>
   );
