@@ -40,6 +40,7 @@ const ArticleList = ({ items }: ArticleListProps): JSX.Element => {
           {shortArray.map((item) => (
             <ArticleCard
               key={item.id}
+              id={item.id}
               title={item.title}
               img={item.img}
               description={item.description}

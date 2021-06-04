@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
+import Link from 'next/link';
 
 interface ArticleCardProps {
   title: string;
@@ -8,7 +9,21 @@ interface ArticleCardProps {
   img: string;
   date: Date;
   timeToRead: number;
+  id: string;
 }
+
+const StyledAnchor = styled.a`
+  &:hover {
+    * > img {
+      transform: translateY(-1px);
+      box-shadow: 0 50px 80px -20px rgba(0, 0, 0, 0.27), 0 30px 50px -30px rgba(0, 0, 0, 0.3);
+    }
+    > h2 {
+      color: #6166dc;
+      transition: color 0.3s ease-in-out;
+    }
+  }
+`;
 
 const ImgContainer = styled(LazyLoadImage)`
   width: 100%;
@@ -20,6 +35,7 @@ const ImgContainer = styled(LazyLoadImage)`
   @media only screen and (max-width: 735px) {
     height: 220px;
   }
+  transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease !important;
 `;
 
 const ArticleTitle = styled.h2`
@@ -36,6 +52,7 @@ const Description = styled.p`
 `;
 
 const ArticleCard = ({
+  id,
   title,
   description,
   img,
@@ -49,17 +66,19 @@ const ArticleCard = ({
   });
 
   return (
-    <div>
-      <ImgContainer
-        alt={title}
-        effect='blur'
-        src={img} // use normal <img> attributes as props
-      />
-      {/* <Img src={img} alt={title} /> */}
-      <ArticleTitle>{title}</ArticleTitle>
-      <Description>{description}</Description>
-      <DateAndTimeText>{`${readableDate} - ${timeToRead.toString()} min read`}</DateAndTimeText>
-    </div>
+    <Link href={`/posts/${id}`}>
+      <StyledAnchor href='/'>
+        <ImgContainer
+          alt={title}
+          effect='blur'
+          src={img} // use normal <img> attributes as props
+        />
+        {/* <Img src={img} alt={title} /> */}
+        <ArticleTitle>{title}</ArticleTitle>
+        <Description>{description}</Description>
+        <DateAndTimeText>{`${readableDate} - ${timeToRead.toString()} min read`}</DateAndTimeText>
+      </StyledAnchor>
+    </Link>
   );
 };
 
