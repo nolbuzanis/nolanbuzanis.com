@@ -21,11 +21,13 @@ module.exports = {
     'plugin:prettier/recommended',
     'airbnb-typescript',
   ],
-  ignorePatterns: ['.eslintrc.js', 'commitlint.config.js'],
+  ignorePatterns: ['.eslintrc.js', 'commitlint.config.js', 'fonts.d.ts'],
   plugins: ['@typescript-eslint'],
   rules: {
     // Place to specify ESLint rules. Can be used to overwrite rules specified from the extended configs
     // e.g. "@typescript-eslint/explicit-function-return-type": "off",
     'react/react-in-jsx-scope': 'off',
+    'object-curly-newline': 'off',
+    'jsx-quotes': [2, 'prefer-single'],
   },
 };

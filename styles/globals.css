@@ -2,8 +2,7 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: 'SF Pro Display', sans-serif;
 }
 
 a {
@@ -13,4 +12,13 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+h2 {
+  font-family: 'Merriweather';
+}
+
+p {
+  color: #73737D;
+  line-height: 24px;
 }
