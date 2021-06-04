@@ -3,7 +3,7 @@ interface Post {
   title: string;
   author: string;
   description: string;
-  date: Date;
+  date: string;
   time: number;
   img: string;
 }

@@ -7,7 +7,7 @@ interface ArticleCardProps {
   title: string;
   description: string;
   img: string;
-  date: Date;
+  date: string;
   timeToRead: number;
   id: string;
 }
