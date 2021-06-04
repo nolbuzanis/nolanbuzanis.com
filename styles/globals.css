@@ -16,9 +16,12 @@ a {
 
 h2 {
   font-family: 'Merriweather';
+  margin: 0;
+  padding: 0;
 }
 
 p {
+  margin: 0;
   color: #73737D;
   line-height: 24px;
 }
