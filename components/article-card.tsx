@@ -18,8 +18,8 @@ const StyledAnchor = styled.a`
       transform: translateY(-1px);
       box-shadow: 0 50px 80px -20px rgba(0, 0, 0, 0.27), 0 30px 50px -30px rgba(0, 0, 0, 0.3);
     }
-    > h2 {
-      color: #6166dc;
+    * > h2 {
+      color: ${(props) => props.theme.title.hoverColor};
       transition: color 0.3s ease-in-out;
     }
   }
@@ -47,6 +47,8 @@ const ImgContainer = styled(LazyLoadImage)`
 `;
 
 const ArticleTitle = styled.h2`
+  color: ${(props) => props.theme.title.textColor};
+  transition: color 0.25s ease;
   margin-bottom: 10px;
   @media only screen and (max-width: 540px) {
     font-size: 22px;
@@ -54,12 +56,21 @@ const ArticleTitle = styled.h2`
 `;
 
 const DateAndTimeText = styled.p`
-  color: rgba(8, 8, 11, 0.15);
+  color: ${(props) => (props.theme.name === 'light' ? 'rgba(8, 8, 11, 0.15)' : '#73737D')};
+  transition: color 0.25s ease;
   font-weight: bold;
 `;
 
 const Description = styled.p`
   margin-bottom: 10px;
+  text-overflow: ellipsis;
+  overflow-wrap: normal;
+  white-space: normal;
+  overflow: hidden;
+  max-width: 515px;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
 `;
 
 const TextContainer = styled.div`
@@ -90,7 +101,6 @@ const ArticleCard = ({
           effect='blur'
           src={img} // use normal <img> attributes as props
         />
-        {/* <Img src={img} alt={title} /> */}
         <TextContainer>
           <ArticleTitle>{title}</ArticleTitle>
           <Description>{description}</Description>

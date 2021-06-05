@@ -25,3 +25,10 @@ p {
   color: #73737D;
   line-height: 24px;
 }
+
+button {
+  appearance: none;
+  border: none;
+  outline: none;
+  background: transparent;
+}

@@ -4,7 +4,11 @@ import ArticleList from '../../components/article-list';
 const AllPosts = (): JSX.Element => {
   const posts = getAllPosts();
 
-  return <ArticleList items={posts} />;
+  return (
+    <div>
+      <ArticleList items={posts} />
+    </div>
+  );
 };
 
 export default AllPosts;
