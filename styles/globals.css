@@ -4,6 +4,12 @@ body {
   margin: 0;
   font-family: 'SF Pro Display', sans-serif;
 }
+html {
+  height: 100%;
+}
+body {
+  min-height: 100%;
+}
 
 a {
   color: inherit;
