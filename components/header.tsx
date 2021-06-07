@@ -10,7 +10,7 @@ const StyledG = styled.g`
 
 const NextLogoSvg = () => (
   <svg
-    width='120px'
+    width='60px'
     // height='124px'
     viewBox='0 0 207 124'
     version='1.1'
@@ -49,7 +49,7 @@ const NextLogoSvg = () => (
 const HeaderWrapper = styled.section`
   max-width: 1220px;
   margin: 0 auto;
-  padding: 80px 4rem 0;
+  padding: 40px 4rem 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
