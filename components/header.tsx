@@ -67,7 +67,7 @@ const Header = (props: HeaderProps): JSX.Element => {
 
   return (
     <HeaderWrapper>
-      <Link href='/posts'>
+      <Link href='/'>
         <a href='/'>
           <NextLogoSvg />
         </a>
