@@ -1,3 +1,5 @@
+export type ThemeType = typeof lightTheme;
+
 export const lightTheme = {
   name: 'light',
   bgColor: '#FAFAFA',
