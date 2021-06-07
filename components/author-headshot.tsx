@@ -19,7 +19,7 @@ const StyledAnchor = styled.a`
   height: 52px;
   width: 52px;
   border-radius: 50%;
-  margin: 4px 26px 4px 10px;
+  margin: 4px 20px 4px 4px;
   border: 1px solid rgba(0, 0, 0, 0.25);
 `;
 

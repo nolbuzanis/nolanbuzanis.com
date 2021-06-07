@@ -8,14 +8,15 @@ interface ArticleListProps {
 const Grid = styled.div<{ even: boolean }>`
   display: grid;
   margin: 0;
-  padding: 0;
   grid-template-columns: ${(props) => (props.even ? '3fr 2fr' : '2fr 3fr')};
   column-gap: 30px;
   margin-bottom: 75px;
+  padding: 0 4rem;
   @media only screen and (max-width: 1280px) {
     grid-template-columns: 1fr 1fr;
   }
   @media only screen and (max-width: 735px) {
+    margin: 0;
     grid-template-columns: 1fr;
   }
   @media only screen and (max-width: 540px) {

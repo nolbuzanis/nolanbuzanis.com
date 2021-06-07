@@ -14,6 +14,9 @@ const HeroText = styled.h1`
   color: ${(props) => props.theme.title.textColor};
   max-width: 652px;
   margin: 100px 0;
+  @media only screen and (max-width: 1070px) {
+    font-size: 38px;
+  }
 `;
 
 const AuthorSection = styled.div`
@@ -39,7 +42,7 @@ const IconButton = styled.button`
   justify-content: center;
 
   &:not(:last-child) {
-    margin-right: 30px;
+    margin-right: 25px;
   }
   align-items: center;
   &:hover {
@@ -52,6 +55,22 @@ const Flex = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-bottom: 100px;
+  @media only screen and (max-width: 1070px) {
+    margin-bottom: 80px;
+  }
+  @media only screen and (max-width: 735px) {
+    margin-bottom: 60px;
+  }
+`;
+
+const IconContainer = styled.div`
+  @media only screen and (max-width: 735px) {
+    display: none;
+  }
+`;
+
+const HeroSection = styled.section`
+  padding: 0 4rem;
 `;
 
 const ArticleHero = (): JSX.Element => {
@@ -61,7 +80,7 @@ const ArticleHero = (): JSX.Element => {
   const enableGridView = () => setGrid(true);
 
   return (
-    <section>
+    <HeroSection>
       <HeroText>Welcome to Novella, the simplest way to start publishing with NextJS.</HeroText>
       <Flex>
         <AuthorSection>
@@ -71,16 +90,16 @@ const ArticleHero = (): JSX.Element => {
             course, your awesome Twitter handle.
           </AuthorBio>
         </AuthorSection>
-        <div>
+        <IconContainer>
           <IconButton onClick={enableGridView}>
             <GridIcon active={grid} />
           </IconButton>
           <IconButton onClick={enableListView}>
             <ListIcon active={!grid} />
           </IconButton>
-        </div>
+        </IconContainer>
       </Flex>
-    </section>
+    </HeroSection>
   );
 };
 

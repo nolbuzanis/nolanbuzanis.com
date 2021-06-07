@@ -23,6 +23,9 @@ const StyledAnchor = styled.a`
       transition: color 0.3s ease-in-out;
     }
   }
+  @media only screen and (max-width: 735px) {
+    margin-bottom: 60px;
+  }
   @media only screen and (max-width: 540px) {
     border-radius: 5px;
     box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.2);
