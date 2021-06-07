@@ -7,6 +7,7 @@ import '../styles/normalize.css';
 import '../styles/globals.css';
 import { lightTheme, darkTheme } from '../utils/theme';
 import Header from '../components/header';
+import ContentContext from '../utils/context';
 
 const Content = styled.main`
   max-width: 1140px;
@@ -30,6 +31,7 @@ const mapThemeName = {
 
 function App({ Component, pageProps }: AppProps): JSX.Element {
   const [theme, setTheme] = useState(lightTheme);
+  const [grid, setGrid] = useState(true);
 
   const handleThemeChange = (themeName: 'dark' | 'light') => {
     setTheme(mapThemeName[themeName]);
@@ -37,13 +39,15 @@ function App({ Component, pageProps }: AppProps): JSX.Element {
 
   return (
     <ThemeProvider theme={theme}>
-      <Background>
-        <Header setTheme={handleThemeChange} />
-        <Content>
-          <GlobalFonts />
-          <Component {...pageProps} />
-        </Content>
-      </Background>
+      <ContentContext.Provider value={{ grid, setGrid }}>
+        <Background>
+          <Header setTheme={handleThemeChange} />
+          <Content>
+            <GlobalFonts />
+            <Component {...pageProps} />
+          </Content>
+        </Background>
+      </ContentContext.Provider>
     </ThemeProvider>
   );
 }
