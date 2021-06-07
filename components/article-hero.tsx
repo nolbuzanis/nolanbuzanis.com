@@ -29,9 +29,8 @@ const AuthorBio = styled.p`
   line-height: 1.45;
 `;
 
-const IconButton = styled('button')<{ active?: boolean }>`
+const IconButton = styled.button`
   cursor: pointer;
-  opacity: 0.25;
   transition: opacity 0.2s, background 0.25s;
   border-radius: 50%;
   height: 36px;
@@ -43,10 +42,8 @@ const IconButton = styled('button')<{ active?: boolean }>`
     margin-right: 30px;
   }
   align-items: center;
-  ${(props) => props.active && 'opacity: 1'};
   &:hover {
-    //opacity: 1;
-    background-color: rgba(0, 0, 0, 0.07);
+    background-color: ${({ theme }) => `${theme.textColor}11`};
   }
 `;
 
@@ -75,11 +72,11 @@ const ArticleHero = (): JSX.Element => {
           </AuthorBio>
         </AuthorSection>
         <div>
-          <IconButton active={grid} onClick={enableGridView}>
-            <GridIcon />
+          <IconButton onClick={enableGridView}>
+            <GridIcon active={grid} />
           </IconButton>
-          <IconButton active={!grid} onClick={enableListView}>
-            <ListIcon />
+          <IconButton onClick={enableListView}>
+            <ListIcon active={!grid} />
           </IconButton>
         </div>
       </Flex>
