@@ -8,6 +8,7 @@ export const lightTheme = {
     textColor: '#000000',
     hoverColor: '#6166dc',
   },
+  articleText: '#08080B',
 };
 
 export const darkTheme = {
@@ -18,4 +19,5 @@ export const darkTheme = {
     textColor: '#FFFFFF',
     hoverColor: '#E9DAAC',
   },
+  articleText: '#FFF',
 };
