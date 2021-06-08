@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import styled, { ThemeContext } from 'styled-components';
 import { useContext } from 'react';
-import ThemeIcon from './icons/theme-icon';
+import ThemeIcon from '../icons/theme-icon';
 
 const StyledRect = styled.rect`
   fill: ${(props) => props.theme.title.textColor};
