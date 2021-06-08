@@ -7,16 +7,17 @@ interface ArticleCardProps {
   title: string;
   description: string;
   img: string;
-  date: string;
+  // date: string;
   timeToRead: number;
   id: string;
 }
 
 const StyledAnchor = styled.a`
+  // overflow: hidden;
   &:hover {
     * > img {
       transform: translateY(-1px);
-      box-shadow: 0 50px 80px -20px rgba(0, 0, 0, 0.27), 0 30px 50px -30px rgba(0, 0, 0, 0.3);
+      box-shadow: rgba(0, 0, 0, 0.27) 0px 50px 80px -20px, rgba(0, 0, 0, 0.3) 0px 30px 50px -30px;
     }
     * > h2 {
       color: ${(props) => props.theme.title.hoverColor};
@@ -36,15 +37,18 @@ const StyledAnchor = styled.a`
 const ImgContainer = styled(LazyLoadImage)`
   width: 100%;
   height: 280px;
+  border-radius: 5px;
   object-fit: cover;
   object-position: center center;
   margin-bottom: 30px;
-  box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.2);
+  // box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.2);
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 30px 60px -10px, rgba(0, 0, 0, 0.33) 0px 18px 36px -18px;
   @media only screen and (max-width: 735px) {
     height: 220px;
   }
   @media only screen and (max-width: 540px) {
     height: 200px;
+    border-radius: 5px 5px 0 0;
   }
   transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease !important;
 `;
@@ -59,7 +63,8 @@ const ArticleTitle = styled.h2`
 `;
 
 const DateAndTimeText = styled.p`
-  color: ${(props) => (props.theme.name === 'light' ? 'rgba(8, 8, 11, 0.15)' : '#73737D')};
+  color: ${(props) => (props.theme.name === 'light' ? 'rgb(115, 115, 125)' : '#73737D')};
+  ${(props) => props.theme.name === 'light' && 'opacity: 0.5;'}
   transition: color 0.25s ease;
   font-weight: bold;
 `;
@@ -82,36 +87,34 @@ const TextContainer = styled.div`
   }
 `;
 
+// const readableDate = new Date(date).toLocaleDateString('en-US', {
+//   month: 'long',
+//   day: 'numeric',
+//   year: 'numeric',
+// });
+
 const ArticleCard = ({
   id,
   title,
   description,
   img,
-  date,
+  // date,
   timeToRead,
-}: ArticleCardProps): JSX.Element => {
-  const readableDate = new Date(date).toLocaleDateString('en-US', {
-    month: 'long',
-    day: 'numeric',
-    year: 'numeric',
-  });
-
-  return (
-    <Link href={`/posts/${id}`}>
-      <StyledAnchor href='/'>
-        <ImgContainer
-          alt={title}
-          effect='blur'
-          src={img} // use normal <img> attributes as props
-        />
-        <TextContainer>
-          <ArticleTitle>{title}</ArticleTitle>
-          <Description>{description}</Description>
-          <DateAndTimeText>{`${readableDate} - ${timeToRead.toString()} min read`}</DateAndTimeText>
-        </TextContainer>
-      </StyledAnchor>
-    </Link>
-  );
-};
+}: ArticleCardProps): JSX.Element => (
+  <Link href={`/posts/${id}`}>
+    <StyledAnchor href='/'>
+      <ImgContainer
+        alt={title}
+        effect='blur'
+        src={img} // use normal <img> attributes as props
+      />
+      <TextContainer>
+        <ArticleTitle>{title}</ArticleTitle>
+        <Description>{description}</Description>
+        <DateAndTimeText>{`${timeToRead.toString()} min read`}</DateAndTimeText>
+      </TextContainer>
+    </StyledAnchor>
+  </Link>
+);
 
 export default ArticleCard;
