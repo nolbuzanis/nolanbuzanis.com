@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { AppProps } from 'next/app';
-import GlobalFonts from '../fonts/fonts';
+import GlobalFonts from '../utils/fonts';
 import '../styles/normalize.css';
 import '../styles/globals.css';
 import { lightTheme, darkTheme } from '../utils/theme';
