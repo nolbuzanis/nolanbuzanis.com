@@ -1,9 +1,10 @@
 interface Post {
-  id: string;
   title: string;
   author: string;
-  description: string;
+  excerpt: string;
   date: string;
-  time: number;
-  img: string;
+  readingTime: number;
+  slug: string;
+  content: string | MDXRemoteSerializeResult<Record<string, unknown>>;
+  hero: string;
 }
