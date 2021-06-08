@@ -15,7 +15,7 @@ const Title = styled.h1`
   margin-bottom: 25px;
   font-weight: bold;
   line-height: 1.32;
-  color: ${(props) => props.theme.textColor};
+  color: var(--color-text);
 `;
 
 interface HeaderProps {

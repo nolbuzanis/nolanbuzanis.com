@@ -14,7 +14,7 @@ const GridIcon = ({ theme, active }: GridIconProps): JSX.Element => (
     width={26}
     height={26}
     viewBox='0 0 26 26'
-    fill={theme.textColor}
+    fill={theme.text}
     active={active}
     xmlns='http://www.w3.org/2000/svg'
   >

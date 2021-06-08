@@ -8,7 +8,7 @@ const Gradient = styled.div`
   height: 590px;
   z-index: 0;
   pointer-events: none;
-  background: ${(props) => props.theme.gradient};
+  background: var(--color-gradient);
   transition: background 0.25s ease, color 0.25s ease;
 `;
 

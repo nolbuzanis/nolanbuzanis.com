@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const StyledP = styled.p`
-  color: ${(props) => props.theme.articleText};
+  color: var(--color-article);
   margin: 0px auto;
   padding-bottom: 35px;
   width: 100%;

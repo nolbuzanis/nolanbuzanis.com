@@ -1,10 +1,10 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import { useState, useLayoutEffect } from 'react';
+import { useState, useEffect } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { AppProps } from 'next/app';
 import '../styles/normalize.css';
 import '../styles/globals.css';
-import { lightTheme, darkTheme } from '../utils/theme';
+import { themes, toggleTheme } from '../utils/theme';
 import Header from '../components/layout/header';
 import ContentContext from '../utils/context';
 import Footer from '../components/layout/footer';
@@ -18,7 +18,7 @@ const Content = styled.main`
 `;
 
 const Background = styled.div`
-  background-color: ${(props) => props.theme.bgColor};
+  background-color: var(--color-background);
   // padding: 0 4rem;
   position: relative;
   transition: background 0.25s ease, color 0.25s ease;
@@ -28,51 +28,46 @@ const Background = styled.div`
   }
 `;
 
-const mapThemeName = {
-  dark: darkTheme,
-  light: lightTheme,
-};
-
 function App({ Component, pageProps }: AppProps): JSX.Element {
-  const [theme, setTheme] = useState(lightTheme);
+  const [theme, setTheme] = useState<string>('light');
   const [grid, setGrid] = useState<GridTypes>('tiles');
 
-  useLayoutEffect(() => {
-    let isMounted = true;
+  useEffect(() => {
+    let mounted = true;
     const persistState = (): void => {
       // check local storage for persiting state
-      const localThemeName = window.localStorage.getItem('theme-ui-color-mode');
-      if (localThemeName && isMounted) setTheme(mapThemeName[localThemeName]);
+      const root = window.document.documentElement;
+      const initialColorValue = root.style.getPropertyValue('--initial-color-mode');
+      if (initialColorValue && mounted) setTheme(initialColorValue);
 
       const gridState = window.localStorage.getItem('grid-layout');
       const isValid = gridState === 'tiles' || gridState === 'list';
 
-      if (isMounted && gridState && isValid) setGrid(gridState as GridTypes);
+      if (mounted && gridState && isValid) setGrid(gridState as GridTypes);
     };
     persistState();
     return () => {
-      isMounted = false;
+      mounted = false;
     };
   }, []);
-
-  const handleThemeChange = (themeName: 'dark' | 'light') => {
-    setTheme(mapThemeName[themeName]);
-    window.localStorage.setItem('theme-ui-color-mode', themeName);
-  };
 
   const handleGridChange = (newLayout: 'tiles' | 'list') => {
     setGrid(newLayout);
     window.localStorage.setItem('grid-layout', newLayout);
   };
 
+  const handleThemeChange = () => {
+    setTheme((prevState) => (prevState === 'light' ? 'dark' : 'light'));
+    toggleTheme();
+  };
+
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={{ ...themes[theme], name: theme }}>
       <ContentContext.Provider value={{ grid, setGrid: handleGridChange }}>
         <Background>
-          <Header setTheme={handleThemeChange} />
+          <Header toggleTheme={handleThemeChange} />
           <Content>
             <Component {...pageProps} />
-            {/* <Gradient /> */}
           </Content>
           <Gradient />
           <Footer />

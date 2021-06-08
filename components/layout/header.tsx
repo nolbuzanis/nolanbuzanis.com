@@ -1,10 +1,9 @@
 import Link from 'next/link';
-import styled, { ThemeContext } from 'styled-components';
-import { useContext } from 'react';
+import styled from 'styled-components';
 import ThemeIcon from '../icons/theme-icon';
 
 const StyledRect = styled.rect`
-  fill: ${(props) => props.theme.title.textColor};
+  fill: var(--color-text);
   transition: fill 0.25s ease;
 `;
 
@@ -55,31 +54,24 @@ const SiteTitle = styled.h1`
   font-family: 'Merriweather', Georgia, Serif;
   margin: 0 0 0 15px;
   transition: color 0.25s ease;
-  color: ${(props) => props.theme.textColor};
+  color: var(--color-text);
 `;
 
 interface HeaderProps {
-  setTheme: (themeName: string) => void;
+  toggleTheme: () => void;
 }
 
-const Header = (props: HeaderProps): JSX.Element => {
-  const { setTheme } = props;
-  const theme = useContext(ThemeContext);
-
-  const toggleTheme = () => setTheme(theme.name === 'light' ? 'dark' : 'light');
-
-  return (
-    <HeaderWrapper>
-      <Link href='/'>
-        <a href='/'>
-          <MillenniumLogo />
-          <SiteTitle>millennium</SiteTitle>
-          {/* <NextLogoSvg /> */}
-        </a>
-      </Link>
-      <ThemeIcon onClick={toggleTheme} />
-    </HeaderWrapper>
-  );
-};
+const Header = ({ toggleTheme }: HeaderProps): JSX.Element => (
+  <HeaderWrapper>
+    <Link href='/'>
+      <a href='/'>
+        <MillenniumLogo />
+        <SiteTitle>millennium</SiteTitle>
+        {/* <NextLogoSvg /> */}
+      </a>
+    </Link>
+    <ThemeIcon onClick={toggleTheme} />
+  </HeaderWrapper>
+);
 
 export default Header;

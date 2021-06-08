@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export default styled.ul`
   list-style: none;
   counter-reset: list 0;
-  color: ${(props) => props.theme.articleText};
+  color: var(--color-article);
   position: relative;
   padding: 15px 0px 30px 30px;
   transition: background 0.25s ease, color 0.25s ease;
@@ -23,7 +23,7 @@ export default styled.ul`
       top: 8px;
       height: 8px;
       width: 8px;
-      background: ${(props) => props.theme.articleText};
+      background: var(--color-article);
     }
   }
 `;

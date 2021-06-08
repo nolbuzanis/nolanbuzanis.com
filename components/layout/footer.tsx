@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const Line = styled.div`
   position: relative;
   margin: 140px auto 50px;
-  border-bottom: 1px solid ${(props) => props.theme.horizontalRule};
+  border-bottom: 1px solid var(--color-horizontal-rule);
 `;
 
 const FooterContent = styled.div`
@@ -13,7 +13,7 @@ const FooterContent = styled.div`
   justify-content: space-between;
   padding-bottom: 80px;
   font-size: 16px;
-  color: ${(props) => props.theme.textColor};
+  color: var(--color-text);
 `;
 
 const Footer = (): JSX.Element => {

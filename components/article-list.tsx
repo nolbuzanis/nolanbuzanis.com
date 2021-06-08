@@ -49,7 +49,7 @@ const ArticleList = ({ items }: ArticleListProps): JSX.Element => {
               img={item.hero}
               description={item.excerpt}
               timeToRead={item.readingTime}
-              date={item.date}
+              // date={item.date}
             />
           ))}
         </Grid>

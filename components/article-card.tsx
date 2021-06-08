@@ -20,7 +20,7 @@ const StyledAnchor = styled.a`
       box-shadow: rgba(0, 0, 0, 0.27) 0px 50px 80px -20px, rgba(0, 0, 0, 0.3) 0px 30px 50px -30px;
     }
     * > h2 {
-      color: ${(props) => props.theme.title.hoverColor};
+      color: var(--color-title-hover);
       transition: color 0.3s ease-in-out;
     }
   }
@@ -54,7 +54,7 @@ const ImgContainer = styled(LazyLoadImage)`
 `;
 
 const ArticleTitle = styled.h2`
-  color: ${(props) => props.theme.title.textColor};
+  color: var(--color-text);
   transition: color 0.25s ease;
   margin-bottom: 10px;
   @media only screen and (max-width: 540px) {
@@ -63,7 +63,7 @@ const ArticleTitle = styled.h2`
 `;
 
 const DateAndTimeText = styled.p`
-  color: ${(props) => (props.theme.name === 'light' ? 'rgb(115, 115, 125)' : '#73737D')};
+  color: var(--color-reading-time);
   ${(props) => props.theme.name === 'light' && 'opacity: 0.5;'}
   transition: color 0.25s ease;
   font-weight: bold;

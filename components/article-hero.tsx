@@ -12,7 +12,7 @@ const HeroText = styled.h1`
   font-weight: 600;
   font-size: 52px;
   line-height: 1.15;
-  color: ${(props) => props.theme.title.textColor};
+  color: var(--color-text);
   max-width: 652px;
   margin: 100px 0;
   @media only screen and (max-width: 1070px) {
@@ -47,8 +47,7 @@ const IconButton = styled.button`
   }
   align-items: center;
   &:hover {
-    background-color: ${({ theme }) => `${theme.textColor}11`};
-  }
+    background-color: var(--color-button-hover);
 `;
 
 const Flex = styled.div`

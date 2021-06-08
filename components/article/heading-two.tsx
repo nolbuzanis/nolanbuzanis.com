@@ -4,7 +4,7 @@ export default styled.h2`
   max-width: 680px;
   margin: 0 auto;
   padding: 25px 0 18px;
-  color: ${(props) => props.theme.textColor};
+  color: var(--color-text);
   word-break: keep-all;
   font-size: 32px;
   line-height: 1.333;

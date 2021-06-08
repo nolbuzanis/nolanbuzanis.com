@@ -23,12 +23,12 @@ const MainCircle = styled.div`
   height: 24px;
   border-radius: 50%;
   border: ${(props) => (props.theme.name === 'dark' ? '4px solid #fff' : '2px solid #000')};
-  background: ${(props) => props.theme.textColor};
+  background: var(--color-text);
   transform: ${(props) => (props.theme.name === 'light' ? 'scale(1)' : 'scale(0.55)')};
   transition: all 0.45s ease;
   overflow: ${(props) => (props.theme.name === 'light' ? 'hidden' : 'visible')};
 
-  &: after {
+  &:after {
     content: '';
     width: 8px;
     height: 8px;
@@ -40,9 +40,11 @@ const MainCircle = styled.div`
     transform: ${(props) => (props.theme.name === 'dark' ? 'scale(1)' : 'scale(0)')};
     transition: all 0.35s ease 0s;
     ${(props) => {
-      const { textColor } = props.theme;
-      return `box-shadow: 0 -23px 0 ${textColor}, 0 23px 0 ${textColor}, 23px 0 0 ${textColor}, -23px 0 0 ${textColor}, 15px 15px 0 ${textColor},
-      -15px 15px 0 ${textColor}, 15px -15px 0 ${textColor}, -15px -15px 0 ${textColor};`;
+      const { text } = props.theme;
+
+      return `box-shadow: 0 -23px 0 ${text}, 0 23px 0 ${text}, 23px 0 0 ${text},
+      -23px 0 0 ${text}, 15px 15px 0 ${text}, -15px 15px 0 ${text},
+      15px -15px 0 ${text}, -15px -15px 0 ${text};`;
     }}
   }
 `;
@@ -53,7 +55,7 @@ const WhiteCircle = styled.div`
   width: 24px;
   border-radius: 50%;
   border: 0;
-  background: ${(props) => props.theme.bgColor}};
+  background: var(--color-background);
   transform: translate(${(props) => (props.theme.name === 'dark' ? '14px, -14px' : '0, 0')});
   opacity: ${(props) => (props.theme.name === 'dark' ? '0' : '1')};
   right: -1px;
