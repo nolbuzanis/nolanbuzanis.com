@@ -2,7 +2,8 @@ import styled from 'styled-components';
 
 const StyledP = styled.p`
   color: ${(props) => props.theme.articleText};
-  margin: 0px auto 35px;
+  margin: 0px auto;
+  padding-bottom: 35px;
   width: 100%;
   line-height: 1.756;
   font-size: 18px;
@@ -14,10 +15,10 @@ const StyledP = styled.p`
   }
   @media only screen and (max-width: 45.9375em) {
     max-width: 486px;
-    margin: 0px auto 25px;
+    padding-bottom: 25px;
   }
   @media only screen and (max-width: 33.75em) {
-    0px 20px;
+    padding-bottom: 20px;
   }
 `;
 

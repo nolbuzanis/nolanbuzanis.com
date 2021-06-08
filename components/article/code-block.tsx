@@ -10,4 +10,7 @@ export default styled.pre`
   border-radius: 5px;
   font-family: 'Operator Mono', Consolas, Menlo, Monaco, source-code-pro, 'Courier New', monospace;
   background: #292c34;
+  > code {
+    color: white;
+  }
 `;

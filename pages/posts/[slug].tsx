@@ -11,6 +11,8 @@ import StyledHeroImage from '../../components/article/hero-image';
 import Header from '../../components/article/header';
 import HeadingTwo from '../../components/article/heading-two';
 import CodeBlock from '../../components/article/code-block';
+import HeadingThree from '../../components/article/heading-three';
+import UnorderedList from '../../components/article/unordered-list';
 
 interface PostProps {
   post: Post;
@@ -20,6 +22,8 @@ const components = {
   p: (props) => <StyledP {...props} />,
   h2: (props) => <HeadingTwo {...props} />,
   pre: (props) => <CodeBlock {...props} />,
+  h3: (props) => <HeadingThree {...props} />,
+  ul: (props) => <UnorderedList {...props} />,
 };
 
 const MDXContainer = styled.article`
