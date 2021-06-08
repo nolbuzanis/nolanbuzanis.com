@@ -38,3 +38,7 @@ button {
   outline: none;
   background: transparent;
 }
+
+header {
+  padding: 0;
+}

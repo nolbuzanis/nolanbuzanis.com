@@ -43,12 +43,12 @@ const ArticleList = ({ items }: ArticleListProps): JSX.Element => {
         <Grid key={i} even={i % 2 === 0}>
           {shortArray.map((item) => (
             <ArticleCard
-              key={item.id}
-              id={item.id}
+              key={item.slug}
+              id={item.slug}
               title={item.title}
-              img={item.img}
-              description={item.description}
-              timeToRead={item.time}
+              img={item.hero}
+              description={item.excerpt}
+              timeToRead={item.readingTime}
               date={item.date}
             />
           ))}
