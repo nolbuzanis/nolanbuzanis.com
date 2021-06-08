@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import { useState } from 'react';
+import { useState, useLayoutEffect } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { AppProps } from 'next/app';
 import '../styles/normalize.css';
@@ -35,15 +35,39 @@ const mapThemeName = {
 
 function App({ Component, pageProps }: AppProps): JSX.Element {
   const [theme, setTheme] = useState(lightTheme);
-  const [grid, setGrid] = useState(true);
+  const [grid, setGrid] = useState<GridTypes>('tiles');
+
+  useLayoutEffect(() => {
+    let isMounted = true;
+    const persistState = (): void => {
+      // check local storage for persiting state
+      const localThemeName = window.localStorage.getItem('theme-ui-color-mode');
+      if (localThemeName && isMounted) setTheme(mapThemeName[localThemeName]);
+
+      const gridState = window.localStorage.getItem('grid-layout');
+      const isValid = gridState === 'tiles' || gridState === 'list';
+
+      if (isMounted && gridState && isValid) setGrid(gridState as GridTypes);
+    };
+    persistState();
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   const handleThemeChange = (themeName: 'dark' | 'light') => {
     setTheme(mapThemeName[themeName]);
+    window.localStorage.setItem('theme-ui-color-mode', themeName);
+  };
+
+  const handleGridChange = (newLayout: 'tiles' | 'list') => {
+    setGrid(newLayout);
+    window.localStorage.setItem('grid-layout', newLayout);
   };
 
   return (
     <ThemeProvider theme={theme}>
-      <ContentContext.Provider value={{ grid, setGrid }}>
+      <ContentContext.Provider value={{ grid, setGrid: handleGridChange }}>
         <Background>
           <Header setTheme={handleThemeChange} />
           <Content>

@@ -77,8 +77,8 @@ const HeroSection = styled.section`
 const ArticleHero = (): JSX.Element => {
   const { grid, setGrid } = useContent();
 
-  const enableListView = () => setGrid(false);
-  const enableGridView = () => setGrid(true);
+  const enableListView = () => setGrid('list');
+  const enableTilesView = () => setGrid('tiles');
 
   return (
     <HeroSection>
@@ -92,11 +92,11 @@ const ArticleHero = (): JSX.Element => {
           </AuthorBio>
         </AuthorSection>
         <IconContainer>
-          <IconButton onClick={enableGridView}>
-            <GridIcon active={grid} />
+          <IconButton onClick={enableTilesView}>
+            <GridIcon active={grid === 'tiles'} />
           </IconButton>
           <IconButton onClick={enableListView}>
-            <ListIcon active={!grid} />
+            <ListIcon active={grid === 'list'} />
           </IconButton>
         </IconContainer>
       </Flex>

@@ -8,3 +8,5 @@ interface Post {
   content: string | MDXRemoteSerializeResult<Record<string, unknown>>;
   hero: string;
 }
+
+type GridTypes = 'tiles' | 'list';

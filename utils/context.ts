@@ -1,12 +1,12 @@
 import { createContext, useContext } from 'react';
 
 interface ContentProps {
-  grid: boolean;
-  setGrid: (newValue: boolean) => void;
+  grid: GridTypes;
+  setGrid: (newValue: GridTypes) => void;
 }
 
 const ContentContext = createContext<ContentProps>({
-  grid: true,
+  grid: 'tiles',
   setGrid: () => {},
 });
 
