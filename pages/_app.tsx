@@ -2,21 +2,25 @@
 import { useState } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { AppProps } from 'next/app';
-import GlobalFonts from '../utils/fonts';
 import '../styles/normalize.css';
 import '../styles/globals.css';
 import { lightTheme, darkTheme } from '../utils/theme';
-import Header from '../components/header';
+import Header from '../components/layout/header';
 import ContentContext from '../utils/context';
+import Footer from '../components/layout/footer';
+import Gradient from '../components/layout/gradient';
 
 const Content = styled.main`
   max-width: 1220px;
   margin: 0 auto;
+  position: relative;
+  z-index: 1;
 `;
 
 const Background = styled.div`
   background-color: ${(props) => props.theme.bgColor};
   // padding: 0 4rem;
+  position: relative;
   transition: background 0.25s ease, color 0.25s ease;
   min-height: 100vh;
   @media only screen and (max-width: 540px) {
@@ -43,9 +47,11 @@ function App({ Component, pageProps }: AppProps): JSX.Element {
         <Background>
           <Header setTheme={handleThemeChange} />
           <Content>
-            <GlobalFonts />
             <Component {...pageProps} />
+            {/* <Gradient /> */}
           </Content>
+          <Gradient />
+          <Footer />
         </Background>
       </ContentContext.Provider>
     </ThemeProvider>
