@@ -3,6 +3,7 @@ import AuthorHeadshot from './author-headshot';
 import GridIcon from './icons/grid-icon';
 import ListIcon from './icons/list-icon';
 import { useContent } from '../utils/context';
+import config from '../config';
 
 const HeroText = styled.h1`
   font-family: -apple-system, system-ui, 'San Francisco', 'Helvetica Neue', Helvetica, Ubuntu,
@@ -81,7 +82,7 @@ const ArticleHero = (): JSX.Element => {
 
   return (
     <HeroSection>
-      <HeroText>Welcome to Novella, the simplest way to start publishing with NextJS.</HeroText>
+      <HeroText>{config.heroText}</HeroText>
       <Flex>
         <AuthorSection>
           <AuthorHeadshot />

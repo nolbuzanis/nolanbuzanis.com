@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap');
+
 html,
 body {
   padding: 0;
@@ -6,6 +8,7 @@ body {
 }
 html {
   height: 100%;
+  font-size: 10px;
 }
 body {
   min-height: 100%;
@@ -21,15 +24,17 @@ a {
 }
 
 h2 {
-  font-family: 'Merriweather';
   margin: 0;
   padding: 0;
+  font-size: 21px;
+  font-family: 'Merriweather',Georgia,Serif;
 }
 
 p {
   margin: 0;
   color: #73737D;
   line-height: 24px;
+  font-size: 16px;
 }
 
 button {
