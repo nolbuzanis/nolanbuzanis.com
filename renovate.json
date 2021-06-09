@@ -3,7 +3,7 @@
     "config:base",
     "group:all",
     // Regular updates
-    "schedule:monthly"
+    "schedule:weekly"
   ],
   // Random assignee of PR
   "assigneesFromCodeOwners": true,
