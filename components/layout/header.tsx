@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import styled from 'styled-components';
+import Head from 'next/head';
 import ThemeIcon from '../ui/theme-icon';
 import CopyIcon from '../ui/copy-icon';
 
@@ -79,6 +80,10 @@ const Header = ({ toggleTheme }: HeaderProps): JSX.Element => {
 
   return (
     <HeaderWrapper>
+      <Head>
+        <meta property='og:url' content={currentUrl} key='ogurl' />
+        <meta property='og:site_name' content='Millennium' key='ogsitename' />
+      </Head>
       <Link href='/'>
         <a href='/'>
           <MillenniumLogo />

@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { serialize } from 'next-mdx-remote/serialize';
 import { MDXRemote } from 'next-mdx-remote';
+import Head from 'next/head';
 import { getAllPosts, getPostBySlug } from '../../utils/api';
 
 // components
@@ -36,6 +37,19 @@ const PostPage = (props: PostProps): JSX.Element => {
   const { post } = props;
   return (
     <div>
+      <Head>
+        <title>{post.title}</title>
+        <meta name='viewport' content='width=device-width, initial-scale=1' />
+        <meta charSet='utf-8' />
+        {/* Twitter */}
+        <meta name='twitter:card' content='summary' key='twcard' />
+        <meta name='twitter:creator' content='@NBuzanis' key='twhandle' />
+        {/* Open Graph */}
+        <meta name='description' content={post.excerpt} />
+        <meta property='og:title' content={post.title} key='ogtitle' />
+        <meta property='og:description' content={post.excerpt} key='ogdesc' />
+        <meta property='og:image' content={post.hero} key='ogimage' />
+      </Head>
       <Header title={post.title} />
       <StyledHeroImage src={post.hero} alt={post.title} effect='blur' />
       <MDXContainer>
