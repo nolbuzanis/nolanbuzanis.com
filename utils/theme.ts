@@ -9,6 +9,7 @@ export interface ThemeTemplate {
   gradient: string;
   'reading-time': string;
   'button-hover': string;
+  tooltip: string;
 }
 
 export const themes: {
@@ -25,6 +26,7 @@ export const themes: {
     'horizontal-rule': 'rgba(8,8,11,0.15)',
     gradient: 'linear-gradient(180deg, rgba(217,219,224,0) 0%, #D9DBE0 100%)',
     'reading-time': 'rgb(115, 115, 125)',
+    tooltip: 'rgba(0,0,0,0.1)',
   },
   dark: {
     background: '#111216',
@@ -36,6 +38,7 @@ export const themes: {
     'horizontal-rule': 'rgba(255,255,255,0.15)',
     gradient: 'linear-gradient(180deg, #111216 0%, rgba(66, 81, 98, 0.36) 100%)',
     'reading-time': '#73737D',
+    tooltip: 'rgba(0,0,0)',
   },
 };
 

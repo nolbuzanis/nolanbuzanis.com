@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import styled from 'styled-components';
-import ThemeIcon from '../icons/theme-icon';
+import ThemeIcon from '../ui/theme-icon';
+import CopyIcon from '../ui/copy-icon';
 
 const StyledRect = styled.rect`
   fill: var(--color-text);
@@ -57,21 +58,39 @@ const SiteTitle = styled.h1`
   color: var(--color-text);
 `;
 
+const IconContainer = styled.div`
+  display: flex;
+  align-items: center;
+
+  > button {
+    margin-left: 30px;
+  }
+`;
+
 interface HeaderProps {
   toggleTheme: () => void;
 }
 
-const Header = ({ toggleTheme }: HeaderProps): JSX.Element => (
-  <HeaderWrapper>
-    <Link href='/'>
-      <a href='/'>
-        <MillenniumLogo />
-        <SiteTitle>millennium</SiteTitle>
-        {/* <NextLogoSvg /> */}
-      </a>
-    </Link>
-    <ThemeIcon onClick={toggleTheme} />
-  </HeaderWrapper>
-);
+const Header = ({ toggleTheme }: HeaderProps): JSX.Element => {
+  let currentUrl = '';
+  if (typeof window !== 'undefined') {
+    currentUrl = window.location.href;
+  }
+
+  return (
+    <HeaderWrapper>
+      <Link href='/'>
+        <a href='/'>
+          <MillenniumLogo />
+          <SiteTitle>millennium</SiteTitle>
+        </a>
+      </Link>
+      <IconContainer>
+        <CopyIcon link={currentUrl} />
+        <ThemeIcon onClick={toggleTheme} />
+      </IconContainer>
+    </HeaderWrapper>
+  );
+};
 
 export default Header;
