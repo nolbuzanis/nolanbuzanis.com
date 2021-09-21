@@ -51,7 +51,7 @@ const PostPage = (props: PostProps): JSX.Element => {
         <meta property='og:image' content={post.hero} key='ogimage' />
       </Head>
       <Header title={post.title} />
-      <StyledHeroImage src={post.hero} alt={post.title} effect='blur' />
+      <StyledHeroImage src={post.hero} alt={post.title} />
       <MDXContainer>
         <MDXRemote {...post.content} components={components} />
       </MDXContainer>

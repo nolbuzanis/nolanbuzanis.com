@@ -1,6 +1,5 @@
 import styled from 'styled-components';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
-import 'react-lazy-load-image-component/src/effects/blur.css';
+import Image from 'next/image';
 import Link from 'next/link';
 
 interface ArticleCardProps {
@@ -15,7 +14,7 @@ interface ArticleCardProps {
 const StyledAnchor = styled.a`
   // overflow: hidden;
   &:hover {
-    * > img {
+    div.imgcontainer {
       transform: translateY(-1px);
       box-shadow: rgba(0, 0, 0, 0.27) 0px 50px 80px -20px, rgba(0, 0, 0, 0.3) 0px 30px 50px -30px;
     }
@@ -34,9 +33,10 @@ const StyledAnchor = styled.a`
   }
 `;
 
-const ImgContainer = styled(LazyLoadImage)`
+const ImgContainer = styled.div`
   width: 100%;
   height: 280px;
+  position: relative;
   border-radius: 5px;
   object-fit: cover;
   object-position: center center;
@@ -103,11 +103,9 @@ const ArticleCard = ({
 }: ArticleCardProps): JSX.Element => (
   <Link href={`/posts/${id}`}>
     <StyledAnchor href='/'>
-      <ImgContainer
-        alt={title}
-        effect='blur'
-        src={img} // use normal <img> attributes as props
-      />
+      <ImgContainer className='imgcontainer'>
+        <Image alt={title} src={img} layout='fill' />
+      </ImgContainer>
       <TextContainer>
         <ArticleTitle>{title}</ArticleTitle>
         <Description>{description}</Description>

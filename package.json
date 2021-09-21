@@ -12,7 +12,6 @@
   },
   "dependencies": {
     "babel-preset-next": "1.4.0",
-    "fs": "0.0.1-security",
     "gray-matter": "4.0.3",
     "next": "10.2.3",
     "next-mdx-remote": "3.0.2",
