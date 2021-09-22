@@ -1,5 +1,5 @@
 module.exports = {
   images: {
-    domains: ['novela.narative.co'],
+    domains: ['millennium-blog.s3.ca-central-1.amazonaws.com'],
   },
 };

@@ -11,7 +11,7 @@ const ImageContainer = styled.div`
   margin: 0 auto;
 `;
 
-const StyledImage = styled(Image)`
+const StyledImage = styled(Image)<{ layout: string }>`
   overflow: hidden;
   box-shadow: 0px 30px 60px -10px rgba(0, 0, 0, 0.2), 0px 18px 36px -18px rgba(0, 0, 0, 0.2);
   object-fit: cover;

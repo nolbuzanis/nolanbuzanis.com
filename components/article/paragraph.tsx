@@ -22,4 +22,16 @@ const StyledP = styled.p`
   }
 `;
 
+// const StyledParagraph = ({ children }): JSX.Element => {
+//   console.log({ children });
+
+//   const parsed = children.map((child) => {
+//     if (typeof child === 'string') return child;
+//     console.log(typeof child);
+//     return child;
+//   });
+
+//   return <StyledP>{parsed}</StyledP>;
+// };
+
 export default StyledP;
