@@ -1,4 +1,5 @@
 import { GetStaticProps } from 'next';
+import styled from 'styled-components';
 import ArticleList from '../components/article-list';
 import ArticleHero from '../components/article-hero';
 // import { getAllPosts } from '../utils/local-api';
@@ -8,14 +9,21 @@ interface HomePageProps {
   posts: Post[];
 }
 
+const Section = styled.section`
+  padding: 0 4em;
+  @media only screen and (max-width: 540px) {
+    padding: 0;
+  }
+`;
+
 const HomePage = (props: HomePageProps): JSX.Element => {
   const { posts } = props;
 
   return (
-    <section>
+    <Section>
       <ArticleHero />
       <ArticleList items={posts} />
-    </section>
+    </Section>
   );
 };
 

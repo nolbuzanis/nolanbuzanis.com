@@ -17,17 +17,16 @@ const Content = styled.main`
   margin: 0 auto;
   position: relative;
   z-index: 1;
+  @media only screen and (max-width: 540px) {
+    padding: 0 20px;
+  }
 `;
 
 const Background = styled.div`
   background-color: var(--color-background);
-  // padding: 0 4rem;
   position: relative;
   transition: background 0.25s ease, color 0.25s ease;
   min-height: 100vh;
-  @media only screen and (max-width: 540px) {
-    padding: 0 20px;
-  }
 `;
 
 function App({ Component, pageProps }: AppProps): JSX.Element {

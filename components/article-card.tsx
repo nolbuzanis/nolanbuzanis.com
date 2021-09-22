@@ -9,10 +9,47 @@ interface ArticleCardProps {
   // date: string;
   timeToRead: number;
   id: string;
+  listView: boolean;
 }
 
-const StyledAnchor = styled.a`
+const StyledAnchor = styled.a<{ listView: boolean }>`
   // overflow: hidden;
+  ${({ listView }) => {
+    if (listView) {
+      return `
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 488px;
+    column-gap: 96px;
+    height: 220px;
+    -webkit-box-align: center;
+    align-items: center;
+    position: relative;
+    margin-bottom: 50px;
+
+    @media only screen and (max-width: 66.875em) {
+      column-gap: 24px;
+      grid-template-columns: 1fr 380px;
+    }
+  `;
+    }
+
+    return `
+  
+    `;
+  }}
+
+  @media only screen and (max-width: 735px) {
+    display: block;
+    margin-bottom: 60px;
+    height: inherit;
+  }
+  @media only screen and (max-width: 540px) {
+    border-radius: 5px;
+    box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.2);
+    margin-bottom: 40px;
+  }
+
   &:hover {
     div.imgcontainer {
       transform: translateY(-1px);
@@ -23,31 +60,28 @@ const StyledAnchor = styled.a`
       transition: color 0.3s ease-in-out;
     }
   }
-  @media only screen and (max-width: 735px) {
-    margin-bottom: 60px;
-  }
-  @media only screen and (max-width: 540px) {
-    border-radius: 5px;
-    box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.2);
-    margin-bottom: 40px;
-  }
 `;
 
-const ImgContainer = styled.div`
+const ImgContainer = styled.div<{ listView: boolean }>`
   width: 100%;
-  height: 280px;
+  height: ${({ listView }) => (listView ? '100%' : '280px')};
   position: relative;
   border-radius: 5px;
-  object-fit: cover;
-  object-position: center center;
-  margin-bottom: 30px;
+  * > img {
+    object-fit: cover;
+    object-position: center center;
+  }
+
+  ${({ listView }) => (listView ? '' : 'margin-bottom: 30px;')}
   // box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.2);
   box-shadow: rgba(0, 0, 0, 0.3) 0px 30px 60px -10px, rgba(0, 0, 0, 0.33) 0px 18px 36px -18px;
   @media only screen and (max-width: 735px) {
     height: 220px;
+    margin-bottom: 30px;
   }
   @media only screen and (max-width: 540px) {
     height: 200px;
+    box-shadow: none;
     border-radius: 5px 5px 0 0;
   }
   transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease !important;
@@ -100,10 +134,11 @@ const ArticleCard = ({
   img,
   // date,
   timeToRead,
+  listView,
 }: ArticleCardProps): JSX.Element => (
   <Link href={`/posts/${id}`}>
-    <StyledAnchor href='/'>
-      <ImgContainer className='imgcontainer'>
+    <StyledAnchor href='/' listView={listView}>
+      <ImgContainer className='imgcontainer' listView={listView}>
         <Image alt={title} src={img} layout='fill' />
       </ImgContainer>
       <TextContainer>

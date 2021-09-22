@@ -106,6 +106,9 @@ const HeaderWrapper = styled.section`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  @media only screen and (max-width: 540px) {
+    padding-top: 50px;
+  }
 `;
 
 const SiteTitle = styled.h1`
@@ -117,6 +120,9 @@ const SiteTitle = styled.h1`
   margin: 0 0 0 15px;
   transition: color 0.25s ease;
   color: var(--color-text);
+  @media only screen and (max-width: 540px) {
+    display: none;
+  }
 `;
 
 const IconContainer = styled.div`

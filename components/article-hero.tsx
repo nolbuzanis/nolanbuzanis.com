@@ -18,6 +18,9 @@ const HeroText = styled.h1`
   @media only screen and (max-width: 1070px) {
     font-size: 38px;
   }
+  @media only screen and (max-width: 540px) {
+    font-size: 32px;
+  }
 `;
 
 const AuthorSection = styled.div`
@@ -61,6 +64,9 @@ const Flex = styled.div`
   @media only screen and (max-width: 735px) {
     margin-bottom: 60px;
   }
+  @media only screen and (max-width: 540px) {
+    display: none;
+  }
 `;
 
 const IconContainer = styled.div`
@@ -70,7 +76,7 @@ const IconContainer = styled.div`
 `;
 
 const HeroSection = styled.section`
-  padding: 0 4rem;
+  // padding: 0 4rem;
 `;
 
 const ArticleHero = (): JSX.Element => {

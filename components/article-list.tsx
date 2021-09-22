@@ -1,24 +1,34 @@
 import styled from 'styled-components';
 import ArticleCard from './article-card';
+import { useContent } from '../utils/context';
 
 interface ArticleListProps {
   items: Post[];
 }
 
-const Grid = styled.div<{ even: boolean }>`
+const Grid = styled.div<{ even: boolean; listView: boolean }>`
   display: grid;
   margin: 0;
-  grid-template-columns: ${(props) => (props.even ? '3fr 2fr' : '2fr 3fr')};
   column-gap: 30px;
-  margin-bottom: 75px;
-  padding: 0 4rem;
-  @media only screen and (max-width: 1280px) {
+  ${(props) => (props.listView ? '' : 'margin-bottom: 75px;')}
+
+  ${(props) => {
+    if (props.listView) {
+      return 'grid-template-columns: 1fr;';
+    }
+    return `
+    grid-template-columns: ${props.even ? '3fr 2fr' : '2fr 3fr'};
+    @media only screen and (max-width: 1280px) {
     grid-template-columns: 1fr 1fr;
   }
   @media only screen and (max-width: 735px) {
     margin: 0;
     grid-template-columns: 1fr;
   }
+    `;
+  }}
+
+  
   @media only screen and (max-width: 540px) {
     margin: 0;
   }
@@ -34,13 +44,16 @@ const splitArrayIntoMultiple = (originalArray: Post[]): Post[][] => {
 };
 
 const ArticleList = ({ items }: ArticleListProps): JSX.Element => {
+  const { grid } = useContent();
+
   const splitArray = splitArrayIntoMultiple(items);
 
+  const listView = grid === 'list';
   return (
     <div>
       {splitArray.map((shortArray, i) => (
         // eslint-disable-next-line react/no-array-index-key
-        <Grid key={i} even={i % 2 === 0}>
+        <Grid key={i} even={i % 2 === 0} listView={listView}>
           {shortArray.map((item) => (
             <ArticleCard
               key={item.slug}
@@ -49,6 +62,7 @@ const ArticleList = ({ items }: ArticleListProps): JSX.Element => {
               img={item.image.url}
               description={item.description}
               timeToRead={item.readingTime}
+              listView={listView}
               // date={item.date}
             />
           ))}

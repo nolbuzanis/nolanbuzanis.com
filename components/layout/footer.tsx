@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+const Section = styled.section`
+  padding: 0 4rem 80px;
+`;
+
 const Line = styled.div`
   position: relative;
   margin: 140px auto 50px;
@@ -14,13 +18,16 @@ const FooterContent = styled.div`
   padding-bottom: 80px;
   font-size: 16px;
   color: var(--color-text);
+  @media only screen and (max-width: 540px) {
+    justify-content: center;
+  }
 `;
 
 const Footer = (): JSX.Element => {
   const copyrightDate = new Date().getFullYear();
 
   return (
-    <section>
+    <Section>
       <Line />
       <FooterContent>
         <span>
@@ -28,7 +35,7 @@ const Footer = (): JSX.Element => {
           {` ${copyrightDate} Millennium`}
         </span>
       </FooterContent>
-    </section>
+    </Section>
   );
 };
 
