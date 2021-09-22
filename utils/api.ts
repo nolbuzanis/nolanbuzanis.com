@@ -20,7 +20,8 @@ export const getAllPosts = async (): Promise<Post[]> => {
 
     return parsed;
   } catch (error) {
-    console.log('Error retrieving posts', error);
+    // eslint-disable-next-line no-console
+    console.error('Error retrieving posts', error);
     return [];
   }
 };

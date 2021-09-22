@@ -8,7 +8,7 @@ export const pageview = (url: string): void => {
 
 interface EventProps {
   action: string;
-  params: string;
+  params: Gtag.EventParams;
 }
 
 // log specific events happening.
