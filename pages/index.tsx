@@ -11,10 +11,10 @@ const HomePage = (props: HomePageProps): JSX.Element => {
   const { posts } = props;
 
   return (
-    <div>
+    <section>
       <ArticleHero />
       <ArticleList items={posts} />
-    </div>
+    </section>
   );
 };
 
