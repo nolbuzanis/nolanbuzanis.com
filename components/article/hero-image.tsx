@@ -21,11 +21,12 @@ const StyledImage = styled(Image)<{ layout: string }>`
 interface ImageProps {
   src: string;
   alt: string;
+  thumbnail: string;
 }
 
-const HeroImage = ({ src, alt }: ImageProps): JSX.Element => (
+const HeroImage = ({ src, alt, thumbnail }: ImageProps): JSX.Element => (
   <ImageContainer>
-    <StyledImage layout='fill' src={src} alt={alt} />
+    <StyledImage layout='fill' src={src} alt={alt} blurDataURL={thumbnail} placeholder='blur' />
   </ImageContainer>
 );
 

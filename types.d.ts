@@ -12,6 +12,11 @@ interface LocalPost {
 interface Image {
   id: number;
   url: string;
+  formats: {
+    thumbnail: {
+      url: string;
+    };
+  };
 }
 
 interface Author {
@@ -29,7 +34,7 @@ interface Category {
   articles: Post[];
 }
 
-interface Post {
+interface StrapiPost {
   id: number;
   title: string;
   description: string;
@@ -41,6 +46,12 @@ interface Post {
   image: Image;
   category: Category;
   readingTime: number;
+}
+
+interface Post extends StrapiPost {
+  hero: string;
+  thumbnail: string;
+  cssThumbnail?: Record<string, unknown>;
 }
 
 type GridTypes = 'tiles' | 'list';

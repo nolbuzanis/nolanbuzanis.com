@@ -75,10 +75,6 @@ const IconContainer = styled.div`
   }
 `;
 
-const HeroSection = styled.section`
-  // padding: 0 4rem;
-`;
-
 const ArticleHero = (): JSX.Element => {
   const { grid, setGrid } = useContent();
 
@@ -86,15 +82,12 @@ const ArticleHero = (): JSX.Element => {
   const enableTilesView = () => setGrid('tiles');
 
   return (
-    <HeroSection>
+    <div>
       <HeroText>{config.heroText}</HeroText>
       <Flex>
         <AuthorSection>
           <AuthorHeadshot />
-          <AuthorBio>
-            Written by You. This is where your author bio lives. Share your work, your joys and of
-            course, your awesome Twitter handle.
-          </AuthorBio>
+          <AuthorBio>Engineer, writer, daydreamer. Canadian.</AuthorBio>
         </AuthorSection>
         <IconContainer>
           <IconButton onClick={enableTilesView}>
@@ -105,7 +98,7 @@ const ArticleHero = (): JSX.Element => {
           </IconButton>
         </IconContainer>
       </Flex>
-    </HeroSection>
+    </div>
   );
 };
 

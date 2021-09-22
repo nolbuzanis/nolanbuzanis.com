@@ -59,7 +59,8 @@ const ArticleList = ({ items }: ArticleListProps): JSX.Element => {
               key={item.slug}
               id={item.slug}
               title={item.title}
-              img={item.image.url}
+              img={item.hero}
+              thumbnail={item.thumbnail}
               description={item.description}
               timeToRead={item.readingTime}
               listView={listView}

@@ -13,7 +13,7 @@ import Gradient from '../components/layout/gradient';
 import { pageview } from '../utils/ga';
 
 const Content = styled.main`
-  max-width: 1220px;
+  // max-width: 1220px;
   margin: 0 auto;
   position: relative;
   z-index: 1;

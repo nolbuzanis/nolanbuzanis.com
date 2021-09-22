@@ -10,6 +10,7 @@ interface ArticleCardProps {
   timeToRead: number;
   id: string;
   listView: boolean;
+  thumbnail: string;
 }
 
 const StyledAnchor = styled.a<{ listView: boolean }>`
@@ -135,11 +136,12 @@ const ArticleCard = ({
   // date,
   timeToRead,
   listView,
+  thumbnail,
 }: ArticleCardProps): JSX.Element => (
   <Link href={`/posts/${id}`}>
     <StyledAnchor href='/' listView={listView}>
       <ImgContainer className='imgcontainer' listView={listView}>
-        <Image alt={title} src={img} layout='fill' />
+        <Image alt={title} src={img} layout='fill' placeholder='blur' blurDataURL={thumbnail} />
       </ImgContainer>
       <TextContainer>
         <ArticleTitle>{title}</ArticleTitle>
