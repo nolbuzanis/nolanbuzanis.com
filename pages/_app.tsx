@@ -4,11 +4,13 @@ import styled, { ThemeProvider } from 'styled-components';
 import { AppProps } from 'next/app';
 import '../styles/normalize.css';
 import '../styles/globals.css';
+import { useRouter } from 'next/router';
 import { themes, toggleTheme } from '../utils/theme';
 import Header from '../components/layout/header';
 import ContentContext from '../utils/context';
 import Footer from '../components/layout/footer';
 import Gradient from '../components/layout/gradient';
+import { pageview } from '../utils/ga';
 
 const Content = styled.main`
   max-width: 1220px;
@@ -31,6 +33,7 @@ const Background = styled.div`
 function App({ Component, pageProps }: AppProps): JSX.Element {
   const [theme, setTheme] = useState<string>('light');
   const [grid, setGrid] = useState<GridTypes>('tiles');
+  const router = useRouter();
 
   useEffect(() => {
     let mounted = true;
@@ -50,6 +53,15 @@ function App({ Component, pageProps }: AppProps): JSX.Element {
       mounted = false;
     };
   }, []);
+
+  // Google analytics pageview tracking
+  useEffect(() => {
+    router.events.on('routeChangeComplete', pageview);
+
+    return () => {
+      router.events.off('routeChangeComplete', pageview);
+    };
+  }, [router.events]);
 
   const handleGridChange = (newLayout: 'tiles' | 'list') => {
     setGrid(newLayout);

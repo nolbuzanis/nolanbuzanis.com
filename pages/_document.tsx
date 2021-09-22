@@ -40,9 +40,32 @@ const colorMode = getInitialColorMode();
   }())`;
 
   render(): JSX.Element {
+    const isDevelopment = process.env.NODE_ENV === 'development';
     return (
       <Html>
         <Head>
+          {/* Global Site Tag (gtag.js) - Google Analytics */}
+          {isDevelopment || (
+            <script
+              async
+              src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
+            />
+          )}
+          {isDevelopment || (
+            <script
+              dangerouslySetInnerHTML={{
+                __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}', {
+              page_path: window.location.pathname,
+            });
+          `,
+              }}
+            />
+          )}
+          {/* Complicated Theme code */}
           <script dangerouslySetInnerHTML={{ __html: this.codeToRun }} />
         </Head>
         <body>
