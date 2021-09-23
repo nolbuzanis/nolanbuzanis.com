@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import Image from 'next/image';
 import Link from 'next/link';
+// import { useRouter } from 'next/router';
 
 interface ArticleCardProps {
   title: string;
@@ -127,7 +128,7 @@ const TextContainer = styled.div`
   }
 `;
 
-const TagBox = styled.a`
+const TagBox = styled.button`
   display: inline-block;
   margin-left: 10px;
   padding: 2px 8px;
@@ -163,6 +164,8 @@ const ArticleCard = ({
     // year: 'numeric',
   });
 
+  // const router = useRouter();
+
   return (
     <Link href={`/posts/${id}`}>
       <StyledAnchor href='/' listView={listView}>
@@ -175,9 +178,12 @@ const ArticleCard = ({
           <div>
             <DateAndTimeText>{`${readableDate} · ${timeToRead.toString()} min read`}</DateAndTimeText>
             {category && (
-              <Link href={`/category/${category.slug}`}>
-                <TagBox>{capitalize(category.name)}</TagBox>
-              </Link>
+              <TagBox
+                aria-label={category.name}
+                // onClick={() => router.push(`/category/${category.slug}`)}
+              >
+                {capitalize(category.name)}
+              </TagBox>
             )}
           </div>
         </TextContainer>
