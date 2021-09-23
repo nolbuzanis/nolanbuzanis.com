@@ -6,11 +6,15 @@ interface ArticleCardProps {
   title: string;
   description: string;
   img: string;
-  // date: string;
+  date: string;
   timeToRead: number;
   id: string;
   listView: boolean;
   thumbnail: string;
+  category: {
+    name: string;
+    slug: string;
+  };
 }
 
 const StyledAnchor = styled.a<{ listView: boolean }>`
@@ -98,10 +102,11 @@ const ArticleTitle = styled.h2`
 `;
 
 const DateAndTimeText = styled.p`
+  display: inline-block;
   color: var(--color-reading-time);
-  ${(props) => props.theme.name === 'light' && 'opacity: 0.5;'}
+  // ${(props) => props.theme.name === 'light' && 'opacity: 0.5;'}
   transition: color 0.25s ease;
-  font-weight: bold;
+  // font-weight: 500;
 `;
 
 const Description = styled.p`
@@ -122,11 +127,23 @@ const TextContainer = styled.div`
   }
 `;
 
-// const readableDate = new Date(date).toLocaleDateString('en-US', {
-//   month: 'long',
-//   day: 'numeric',
-//   year: 'numeric',
-// });
+const TagBox = styled.a`
+  display: inline-block;
+  margin-left: 10px;
+  padding: 2px 8px;
+  background-color: var(--color-tag-background);
+  border-radius: 10px;
+  height: 24px;
+  line-height: 24px;
+  color: var(--color-reading-time);
+  font-size: 14px;
+  transition: all 0.25s ease;
+  &:hover {
+    filter: brightness(85%);
+  }
+`;
+
+const capitalize = (word: string) => word.charAt(0).toUpperCase() + word.substring(1);
 
 const ArticleCard = ({
   id,
@@ -137,19 +154,36 @@ const ArticleCard = ({
   timeToRead,
   listView,
   thumbnail,
-}: ArticleCardProps): JSX.Element => (
-  <Link href={`/posts/${id}`}>
-    <StyledAnchor href='/' listView={listView}>
-      <ImgContainer className='imgcontainer' listView={listView}>
-        <Image alt={title} src={img} layout='fill' placeholder='blur' blurDataURL={thumbnail} />
-      </ImgContainer>
-      <TextContainer>
-        <ArticleTitle>{title}</ArticleTitle>
-        <Description>{description}</Description>
-        <DateAndTimeText>{`${timeToRead.toString()} min read`}</DateAndTimeText>
-      </TextContainer>
-    </StyledAnchor>
-  </Link>
-);
+  date,
+  category,
+}: ArticleCardProps): JSX.Element => {
+  const readableDate = new Date(date).toLocaleDateString('en-US', {
+    month: 'short',
+    day: 'numeric',
+    // year: 'numeric',
+  });
+
+  return (
+    <Link href={`/posts/${id}`}>
+      <StyledAnchor href='/' listView={listView}>
+        <ImgContainer className='imgcontainer' listView={listView}>
+          <Image alt={title} src={img} layout='fill' placeholder='blur' blurDataURL={thumbnail} />
+        </ImgContainer>
+        <TextContainer>
+          <ArticleTitle>{title}</ArticleTitle>
+          <Description>{description}</Description>
+          <div>
+            <DateAndTimeText>{`${readableDate} · ${timeToRead.toString()} min read`}</DateAndTimeText>
+            {category && (
+              <Link href={`/category/${category.slug}`}>
+                <TagBox>{capitalize(category.name)}</TagBox>
+              </Link>
+            )}
+          </div>
+        </TextContainer>
+      </StyledAnchor>
+    </Link>
+  );
+};
 
 export default ArticleCard;

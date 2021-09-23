@@ -30,3 +30,15 @@ export const getPostBySlug = async (slugToMatch: string): Promise<Post> => {
   const { base64 } = await getPlaiceholder(post.hero, { size: 10 });
   return { ...post, thumbnail: base64 };
 };
+
+export const getPostByCategory = async (slugToMatch: string): Promise<Post[]> => {
+  const data = await getAllPosts();
+
+  return data.filter(({ category }) => category.slug === slugToMatch);
+};
+
+export const getAllCategories = async (): Promise<Category[]> => {
+  const { data }: { data: Category[] } = await axios.get(`${process.env.STRAPI_URL}/categories`);
+
+  return data;
+};

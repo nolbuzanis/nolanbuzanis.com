@@ -40,12 +40,17 @@ interface StrapiPost {
   description: string;
   content: string;
   slug: string;
-  created_at: string;
-  updated_at: string;
+  createdAt: string;
+  updatedAt: string;
   author: Author;
   image: Image;
   category: Category;
   readingTime: number;
+  published_at: string;
+  category: {
+    name: string;
+    slug: string;
+  };
 }
 
 interface Post extends StrapiPost {

@@ -47,7 +47,6 @@ const ArticleList = ({ items }: ArticleListProps): JSX.Element => {
   const { grid } = useContent();
 
   const splitArray = splitArrayIntoMultiple(items);
-
   const listView = grid === 'list';
   return (
     <div>
@@ -64,7 +63,8 @@ const ArticleList = ({ items }: ArticleListProps): JSX.Element => {
               description={item.description}
               timeToRead={item.readingTime}
               listView={listView}
-              // date={item.date}
+              date={item.published_at}
+              category={item.category}
             />
           ))}
         </Grid>
