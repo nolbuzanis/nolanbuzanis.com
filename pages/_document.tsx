@@ -44,6 +44,12 @@ const colorMode = getInitialColorMode();
       <Html>
         <Head>
           {/* Complicated Theme code */}
+          <link rel='preconnect' href='https://fonts.googleapis.com' />
+          <link rel='preconnect' href='https://fonts.gstatic.com' />
+          <link
+            href='https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap'
+            rel='stylesheet'
+          />
           <script dangerouslySetInnerHTML={{ __html: this.codeToRun }} />
         </Head>
         <body>
