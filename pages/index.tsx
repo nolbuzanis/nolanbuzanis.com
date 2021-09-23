@@ -36,11 +36,13 @@ export const getStaticProps: GetStaticProps = async () => {
   const originalPosts = await getAllStrapiPosts();
 
   // create dataURL version of thumbnils
-  const promises = originalPosts.map(async (post) => {
-    const { base64 } = await getPlaiceholder(post.hero, { size: 10 });
+  const promises = originalPosts
+    .sort((a, b) => new Date(b.published_at).getTime() - new Date(a.published_at).getTime())
+    .map(async (post) => {
+      const { base64 } = await getPlaiceholder(post.hero, { size: 10 });
 
-    return { ...post, thumbnail: base64 };
-  });
+      return { ...post, thumbnail: base64 };
+    });
 
   const posts = await Promise.all(promises);
 
