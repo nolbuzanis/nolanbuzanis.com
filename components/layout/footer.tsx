@@ -32,7 +32,7 @@ const Footer = (): JSX.Element => {
       <FooterContent>
         <span>
           &copy;
-          {` ${copyrightDate} Millennium`}
+          {` ${copyrightDate} Nolan Buzanis`}
         </span>
       </FooterContent>
     </Section>

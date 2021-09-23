@@ -87,7 +87,7 @@ const ArticleHero = (): JSX.Element => {
       <Flex>
         <AuthorSection>
           <AuthorHeadshot />
-          <AuthorBio>Engineer, writer, daydreamer. Canadian.</AuthorBio>
+          <AuthorBio>Engineer, Writer, Canadian.</AuthorBio>
         </AuthorSection>
         <IconContainer>
           <IconButton onClick={enableTilesView}>
