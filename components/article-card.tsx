@@ -11,7 +11,6 @@ interface ArticleCardProps {
   timeToRead: number;
   id: string;
   listView: boolean;
-  thumbnail: string;
   category: {
     name: string;
     slug: string;
@@ -24,6 +23,7 @@ const StyledAnchor = styled.a<{ listView: boolean }>`
     if (listView) {
       return `
     display: grid;
+    position: relative;
     grid-template-rows: 1fr;
     grid-template-columns: 1fr 488px;
     column-gap: 96px;
@@ -154,7 +154,6 @@ const ArticleCard = ({
   // date,
   timeToRead,
   listView,
-  thumbnail,
   date,
   category,
 }: ArticleCardProps): JSX.Element => {
@@ -170,7 +169,7 @@ const ArticleCard = ({
     <Link href={`/posts/${id}`}>
       <StyledAnchor href='/' listView={listView}>
         <ImgContainer className='imgcontainer' listView={listView}>
-          <Image alt={title} src={img} layout='fill' placeholder='blur' blurDataURL={thumbnail} />
+          <Image alt={title} src={img} layout='fill' />
         </ImgContainer>
         <TextContainer>
           <ArticleTitle>{title}</ArticleTitle>
