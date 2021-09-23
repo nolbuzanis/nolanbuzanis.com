@@ -157,7 +157,7 @@ const Header = ({ toggleTheme }: HeaderProps): JSX.Element => {
         <link rel='manifest' href='/site.webmanifest' />
       </Head>
       <Link href='/'>
-        <a href='/'>
+        <a href='/' aria-label='Home'>
           <SiteLogo />
           <SiteTitle>Nolan Buzanis</SiteTitle>
         </a>

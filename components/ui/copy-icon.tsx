@@ -69,7 +69,7 @@ const CopyLink = ({ link }: CopyIconProps): JSX.Element => {
   };
 
   return (
-    <Button onClick={handleCopy}>
+    <Button onClick={handleCopy} aria-label='Copy url'>
       <CopyTooltip active={showTooltip}>Copied</CopyTooltip>
       <Svg
         width={24}

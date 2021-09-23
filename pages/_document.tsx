@@ -41,7 +41,7 @@ const colorMode = getInitialColorMode();
 
   render(): JSX.Element {
     return (
-      <Html>
+      <Html lang='en'>
         <Head>
           {/* Complicated Theme code */}
           <link rel='preconnect' href='https://fonts.googleapis.com' />

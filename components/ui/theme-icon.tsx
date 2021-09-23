@@ -69,7 +69,7 @@ interface ThemeIconProps {
 }
 
 const ThemeIcon = ({ onClick }: ThemeIconProps): JSX.Element => (
-  <ThemeButton onClick={onClick}>
+  <ThemeButton onClick={onClick} aria-label='Switch theme'>
     <MainCircle />
     <WhiteCircle />
   </ThemeButton>

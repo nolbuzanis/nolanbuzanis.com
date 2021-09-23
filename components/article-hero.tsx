@@ -90,10 +90,10 @@ const ArticleHero = (): JSX.Element => {
           <AuthorBio>Engineer, Writer, Canadian.</AuthorBio> */}
         </AuthorSection>
         <IconContainer>
-          <IconButton onClick={enableTilesView}>
+          <IconButton onClick={enableTilesView} aria-label='Grid view'>
             <GridIcon active={grid === 'tiles'} />
           </IconButton>
-          <IconButton onClick={enableListView}>
+          <IconButton onClick={enableListView} aria-label='List view'>
             <ListIcon active={grid === 'list'} />
           </IconButton>
         </IconContainer>
