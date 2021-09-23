@@ -5,6 +5,7 @@ import { AppProps } from 'next/app';
 import '../styles/normalize.css';
 import '../styles/globals.css';
 import { useRouter } from 'next/router';
+import Script from 'next/script';
 import { themes, toggleTheme } from '../utils/theme';
 import Header from '../components/layout/header';
 import ContentContext from '../utils/context';
@@ -72,19 +73,45 @@ function App({ Component, pageProps }: AppProps): JSX.Element {
     toggleTheme();
   };
 
+  const isDevelopment = process.env.NODE_ENV === 'development';
+
   return (
-    <ThemeProvider theme={{ ...themes[theme], name: theme }}>
-      <ContentContext.Provider value={{ grid, setGrid: handleGridChange }}>
-        <Background>
-          <Header toggleTheme={handleThemeChange} />
-          <Content>
-            <Component {...pageProps} />
-          </Content>
-          <Gradient />
-          <Footer />
-        </Background>
-      </ContentContext.Provider>
-    </ThemeProvider>
+    <>
+      {/* Global Site Tag (gtag.js) - Google Analytics */}
+      {isDevelopment || (
+        <Script
+          strategy='afterInteractive'
+          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
+        />
+      )}
+      {isDevelopment || (
+        <Script
+          strategy='afterInteractive'
+          dangerouslySetInnerHTML={{
+            __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}', {
+              page_path: window.location.pathname,
+            });
+          `,
+          }}
+        />
+      )}
+      <ThemeProvider theme={{ ...themes[theme], name: theme }}>
+        <ContentContext.Provider value={{ grid, setGrid: handleGridChange }}>
+          <Background>
+            <Header toggleTheme={handleThemeChange} />
+            <Content>
+              <Component {...pageProps} />
+            </Content>
+            <Gradient />
+            <Footer />
+          </Background>
+        </ContentContext.Provider>
+      </ThemeProvider>
+    </>
   );
 }
 

@@ -8,12 +8,17 @@
     "start": "next start",
     "prepare": "husky install",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "lint:fix": "eslint . --fix  --ext .js,.jsx,.ts,.tsx"
+    "lint:fix": "eslint . --fix  --ext .js,.jsx,.ts,.tsx",
+    "analyze": "cross-env ANALYZE=true next build",
+    "analyze:server": "cross-env BUNDLE_ANALYZE=server next build",
+    "analyze:browser": "cross-env BUNDLE_ANALYZE=browser next build"
   },
   "dependencies": {
     "@babel/core": "^7.15.5",
+    "@next/bundle-analyzer": "^11.1.2",
     "axios": "^0.21.4",
     "babel-preset-next": "1.4.0",
+    "cross-env": "^7.0.3",
     "gray-matter": "4.0.3",
     "next": "^11.1.2",
     "next-mdx-remote": "3.0.2",
