@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import AuthorHeadshot from './author-headshot';
+// import AuthorHeadshot from './author-headshot';
 import GridIcon from './ui/grid-icon';
 import ListIcon from './ui/list-icon';
 import { useContent } from '../utils/context';
@@ -14,7 +14,7 @@ const HeroText = styled.h1`
   line-height: 1.15;
   color: var(--color-text);
   max-width: 652px;
-  margin: 100px 0;
+  margin: 100px 0 50px;
   @media only screen and (max-width: 1070px) {
     font-size: 38px;
   }
@@ -30,11 +30,11 @@ const AuthorSection = styled.div`
   left: -10px;
 `;
 
-const AuthorBio = styled.p`
-  max-width: 430px;
-  font-size: 14px;
-  line-height: 1.45;
-`;
+// const AuthorBio = styled.p`
+//   max-width: 430px;
+//   font-size: 14px;
+//   line-height: 1.45;
+// `;
 
 const IconButton = styled.button`
   cursor: pointer;
@@ -57,7 +57,7 @@ const Flex = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 100px;
+  margin-bottom: 80px;
   @media only screen and (max-width: 1070px) {
     margin-bottom: 80px;
   }
@@ -86,8 +86,8 @@ const ArticleHero = (): JSX.Element => {
       <HeroText>{config.heroText}</HeroText>
       <Flex>
         <AuthorSection>
-          <AuthorHeadshot />
-          <AuthorBio>Engineer, Writer, Canadian.</AuthorBio>
+          {/* <AuthorHeadshot />
+          <AuthorBio>Engineer, Writer, Canadian.</AuthorBio> */}
         </AuthorSection>
         <IconContainer>
           <IconButton onClick={enableTilesView}>
