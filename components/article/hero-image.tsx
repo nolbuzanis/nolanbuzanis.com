@@ -9,6 +9,11 @@ const ImageContainer = styled.div`
   position: relative;
   height: 425px;
   margin: 0 auto;
+  @media only screen and (max-width: 540px) {
+    height: 220px;
+    width: calc(100vw - 40px);
+    box-shadow: 0 30px 60px -10px rgba(0, 0, 0, 0.2), 0 18px 36px -18px rgba(0, 0, 0, 0.22);
+  }
 `;
 
 const StyledImage = styled(Image)<{ layout: string }>`

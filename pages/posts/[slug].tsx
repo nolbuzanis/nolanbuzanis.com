@@ -15,7 +15,6 @@ import HeadingTwo from '../../components/article/heading-two';
 import CodeBlock from '../../components/article/code-block';
 import HeadingThree from '../../components/article/heading-three';
 import UnorderedList from '../../components/article/unordered-list';
-import HeadingOne from '../../components/article/heading-one';
 import Link from '../../components/article/link';
 
 interface PostProps {
@@ -28,7 +27,7 @@ const components = {
   pre: (props) => <CodeBlock {...props} />,
   h3: (props) => <HeadingThree {...props} />,
   ul: (props) => <UnorderedList {...props} />,
-  h1: (props) => <HeadingOne {...props} />,
+  h1: (props) => <HeadingTwo {...props} />,
   a: (props) => <Link {...props} />,
 };
 
@@ -36,6 +35,9 @@ const MDXContainer = styled.article`
   position: relative;
   padding: 160px 0px 35px 68px;
   transition: background 0.2s linear 0s;
+  @media only screen and (max-width: 540px) {
+    padding: 60px 0 0;
+  }
 `;
 
 const PostPage = (props: PostProps): JSX.Element => {
@@ -55,7 +57,12 @@ const PostPage = (props: PostProps): JSX.Element => {
         <meta property='og:description' content={post.description} key='ogdesc' />
         <meta property='og:image' content={post.hero} key='ogimage' />
       </Head>
-      <Header title={post.title} />
+      <Header
+        title={post.title}
+        date={post.published_at}
+        author={post.author.name}
+        timeToRead={post.readingTime}
+      />
       <StyledHeroImage src={post.hero} alt={post.title} thumbnail={post.thumbnail} />
       <MDXContainer>
         <MDXRemote compiledSource={post.content} {...post.content} components={components} />

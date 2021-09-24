@@ -20,6 +20,7 @@ const HeroText = styled.h1`
   }
   @media only screen and (max-width: 540px) {
     font-size: 32px;
+    padding: 0 20px;
   }
 `;
 

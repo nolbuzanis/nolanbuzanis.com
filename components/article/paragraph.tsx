@@ -18,7 +18,7 @@ const StyledP = styled.p`
     padding-bottom: 25px;
   }
   @media only screen and (max-width: 33.75em) {
-    padding-bottom: 20px;
+    padding: 20px;
   }
 `;
 

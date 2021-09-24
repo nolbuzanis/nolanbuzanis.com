@@ -31,6 +31,7 @@ const Grid = styled.div<{ even: boolean; listView: boolean }>`
   
   @media only screen and (max-width: 540px) {
     margin: 0;
+    padding: 0 20px;
   }
 `;
 
