@@ -1,8 +1,10 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 /* eslint-disable react/jsx-props-no-spreading */
 
 import styled from 'styled-components';
 import React from 'react';
-import Highlight, { defaultProps } from 'prism-react-renderer';
+import Highlight, { defaultProps, Language } from 'prism-react-renderer';
+import CopyIcon from '../ui/copy-code-icon';
 
 const Pre = styled.pre`
   position: relative;
@@ -35,6 +37,9 @@ const Pre = styled.pre`
     line-height: 1.4;
     font-family: 'Operator Mono', Consolas, Menlo, Monaco, source-code-pro, Courier New, monospace;
   }
+  > button {
+    font-family: 'Operator Mono', Consolas, Menlo, Monaco, source-code-pro, Courier New, monospace;
+  }
 `;
 
 const Line = styled.div`
@@ -58,22 +63,52 @@ const LineContent = styled.span`
   display: table-cell;
 `;
 
-const Code = ({ children }: { children: React.ReactElement }): JSX.Element => (
-  <Highlight {...defaultProps} code={children.props.children} language='jsx' theme={undefined}>
-    {({ className, style, tokens, getLineProps, getTokenProps }) => (
-      <Pre className={className} style={style}>
-        {tokens.map((line, i) => (
-          <Line {...getLineProps({ line, key: i })}>
-            <LineNo>{i + 1}</LineNo>
-            <LineContent>
-              {line.map((token, key) => (
-                <span {...getTokenProps({ token, key })} />
-              ))}
-            </LineContent>
-          </Line>
-        ))}
-      </Pre>
-    )}
-  </Highlight>
-);
+interface CodeBlockProps {
+  children: {
+    props: {
+      children: string;
+      className: string;
+    };
+  };
+}
+
+const mapToLanguage = {
+  js: 'javascript',
+  jsx: 'jsx',
+};
+
+const Code = ({
+  children: {
+    props: { children, className },
+  },
+}: CodeBlockProps): JSX.Element => {
+  let language: Language;
+  if (className) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const [_, langName] = className.split('-');
+    if (mapToLanguage[langName]) {
+      language = mapToLanguage[langName];
+    }
+  }
+
+  return (
+    <Highlight {...defaultProps} code={children} language={language} theme={undefined}>
+      {({ className: classname, style, tokens, getLineProps, getTokenProps }) => (
+        <Pre className={classname} style={style}>
+          <CopyIcon text={children} />
+          {tokens.map((line, i) => (
+            <Line {...getLineProps({ line, key: i })}>
+              <LineNo>{i + 1}</LineNo>
+              <LineContent>
+                {line.map((token, key) => (
+                  <span {...getTokenProps({ token, key })} />
+                ))}
+              </LineContent>
+            </Line>
+          ))}
+        </Pre>
+      )}
+    </Highlight>
+  );
+};
 export default Code;
