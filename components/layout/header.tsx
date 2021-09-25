@@ -128,10 +128,6 @@ const SiteTitle = styled.h1`
 const IconContainer = styled.div`
   display: flex;
   align-items: center;
-
-  > button {
-    margin-left: 30px;
-  }
 `;
 
 interface HeaderProps {

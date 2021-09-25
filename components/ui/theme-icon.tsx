@@ -12,8 +12,13 @@ const ThemeButton = styled.button`
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  margin-left: 30px;
   &: hover {
     opacity: 1;
+  }
+  @media only screen and (max-width: 540px) {
+    transform: scale(0.708);
+    margin-left: 10px;
   }
 `;
 

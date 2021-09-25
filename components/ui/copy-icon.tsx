@@ -11,6 +11,11 @@ const Button = styled.button`
   align-items: center;
   justify-content: center;
   transition: opacity 0.3s ease 0s;
+  margin-left: 30px;
+  @media only screen and (max-width: 540px) {
+    transform: scale(0.708);
+    margin-left: 10px;
+  }
 `;
 
 const Svg = styled.svg`
