@@ -11,10 +11,19 @@ export default styled.ul`
   font-size: 18px;
   width: 100%;
   max-width: 680px;
+  @media (max-width: 66.875em) {
+    max-width: 507px;
+  }
+  @media (max-width: 45.9375em) {
+    max-width: 486px;
+  }
 
   > li {
     position: relative;
     padding-bottom: 15px;
+    @media (max-width: 45.9375em) {
+      padding-left: 30px;
+    }
 
     &:before {
       content: '';
@@ -24,6 +33,9 @@ export default styled.ul`
       height: 8px;
       width: 8px;
       background: var(--color-article);
+      @media (max-width: 45.9375em) {
+        left: 0;
+      }
     }
   }
 `;

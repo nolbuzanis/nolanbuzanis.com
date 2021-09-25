@@ -5,6 +5,7 @@ import { serialize } from 'next-mdx-remote/serialize';
 import { MDXRemote } from 'next-mdx-remote';
 import Head from 'next/head';
 // import { getAllPosts, getPostBySlug } from '../../utils/local-api';
+
 import { getAllPosts, getPostBySlug } from '../../utils/api';
 
 // components
@@ -42,6 +43,7 @@ const MDXContainer = styled.article`
 
 const PostPage = (props: PostProps): JSX.Element => {
   const { post } = props;
+
   return (
     <div>
       <Head>

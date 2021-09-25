@@ -10,6 +10,10 @@ export default styled.h2`
   line-height: 1.333;
   font-weight: bold;
   font-family: Merriweather, Georgia, serif;
+  @media (max-width: 66.875em) {
+    max-width: 507px;
+    font-size: 21px;
+  }
   @media only screen and (max-width: 540px) {
     font-size: 22px;
     padding: 25px 20px 18px;

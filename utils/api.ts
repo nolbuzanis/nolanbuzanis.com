@@ -34,7 +34,7 @@ export const getPostBySlug = async (slugToMatch: string): Promise<Post> => {
 export const getPostByCategory = async (slugToMatch: string): Promise<Post[]> => {
   const data = await getAllPosts();
 
-  return data.filter(({ category }) => category.slug === slugToMatch);
+  return data.filter(({ category }) => category && category.slug === slugToMatch);
 };
 
 export const getAllCategories = async (): Promise<Category[]> => {

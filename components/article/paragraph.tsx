@@ -18,20 +18,8 @@ const StyledP = styled.p`
     padding-bottom: 25px;
   }
   @media only screen and (max-width: 33.75em) {
-    padding: 20px;
+    padding: 0 20px 25px;
   }
 `;
-
-// const StyledParagraph = ({ children }): JSX.Element => {
-//   console.log({ children });
-
-//   const parsed = children.map((child) => {
-//     if (typeof child === 'string') return child;
-//     console.log(typeof child);
-//     return child;
-//   });
-
-//   return <StyledP>{parsed}</StyledP>;
-// };
 
 export default StyledP;

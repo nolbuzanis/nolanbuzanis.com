@@ -12,6 +12,7 @@ import ContentContext from '../utils/context';
 import Footer from '../components/layout/footer';
 import Gradient from '../components/layout/gradient';
 import { pageview } from '../utils/ga';
+import '../styles/prism-material-dark.css';
 
 const Content = styled.main`
   // max-width: 1220px;
