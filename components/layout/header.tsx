@@ -106,6 +106,9 @@ const HeaderWrapper = styled.section`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  @media only screen and (max-width: 66.875em) {
+    max-width: 850px;
+  }
   @media only screen and (max-width: 540px) {
     padding-top: 50px;
   }

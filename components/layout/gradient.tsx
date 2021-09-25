@@ -12,4 +12,6 @@ const Gradient = styled.div`
   transition: background 0.25s ease, color 0.25s ease;
 `;
 
-export default Gradient;
+const BgGradient = (): JSX.Element => <Gradient />;
+
+export default BgGradient;
