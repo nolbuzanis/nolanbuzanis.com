@@ -85,6 +85,13 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   //   'readingTime',
   // ]);
   const post = await getPostBySlug(params.slug as string);
+
+  // check for error
+  if ('error' in post) {
+    return {
+      notFound: true,
+    };
+  }
   // const content = await markdownToHtml(post.content || '');
   const content = await serialize(post.content || '');
 

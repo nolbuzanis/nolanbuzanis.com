@@ -1,3 +1,7 @@
+interface NestedError {
+  error: Error | string;
+}
+
 interface LocalPost {
   title: string;
   author: string;

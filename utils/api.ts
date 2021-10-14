@@ -1,6 +1,5 @@
 /* eslint-disable import/prefer-default-export */
 import axios from 'axios';
-import { getPlaiceholder } from 'plaiceholder';
 import rTime from 'reading-time';
 
 export const getAllPosts = async (): Promise<Post[]> => {
@@ -22,19 +21,40 @@ export const getAllPosts = async (): Promise<Post[]> => {
   }
 };
 
-export const getPostBySlug = async (slugToMatch: string): Promise<Post> => {
-  // const { data }: { data: Post[] } = await axios.get(`${process.env.STRAPI_URL}/articles`);
-  const data = await getAllPosts();
+export const getPostBySlug = async (slugToMatch: string): Promise<Post | NestedError> => {
+  const { data }: { data: StrapiPost[] } = await axios.get(
+    `${process.env.STRAPI_URL}/articles?slug=${slugToMatch}`,
+  );
 
-  const post = data.find(({ slug }) => slug === slugToMatch);
-  const { base64 } = await getPlaiceholder(post.hero, { size: 10 });
-  return { ...post, thumbnail: base64 };
+  if (data && data[0]) {
+    const [article] = data;
+    return {
+      ...article,
+      hero: article.image.url,
+      readingTime: Math.round(rTime(article.content).minutes),
+      thumbnail: article.image.formats.thumbnail.url,
+    };
+  }
+
+  return { error: 'No post found!' };
 };
 
-export const getPostByCategory = async (slugToMatch: string): Promise<Post[]> => {
-  const data = await getAllPosts();
+export const getPostByCategory = async (slugToMatch: string): Promise<Post[] | NestedError> => {
+  const { data }: { data: StrapiPost[] } = await axios.get(
+    `${process.env.STRAPI_URL}/articles?category.slug=${slugToMatch}`,
+  );
+  // const data = await getAllPosts();
 
-  return data.filter(({ category }) => category && category.slug === slugToMatch);
+  if (data && data.length > 0) {
+    return data.map((article) => ({
+      ...article,
+      hero: article.image.url,
+      readingTime: Math.round(rTime(article.content).minutes),
+      thumbnail: article.image.formats.thumbnail.url,
+    }));
+  }
+
+  return { error: 'No posts with this category found!' };
 };
 
 export const getAllCategories = async (): Promise<Category[]> => {

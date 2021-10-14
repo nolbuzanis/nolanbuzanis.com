@@ -18,6 +18,12 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   const posts = await getPostByCategory(slug as string);
 
+  if ('error' in posts) {
+    return {
+      notFound: true,
+    };
+  }
+
   return {
     props: {
       posts,
