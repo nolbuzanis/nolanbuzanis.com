@@ -41,7 +41,7 @@ export const themes: {
     gradient: 'linear-gradient(180deg, #111216 0%, rgba(66, 81, 98, 0.36) 100%)',
     'reading-time': '#73737D',
     tooltip: 'rgba(0,0,0)',
-    'tag-background': 'rgba(242, 242, 242, 0.25)',
+    'tag-background': 'rgba(255,255,255,0.05)',
   },
 };
 
