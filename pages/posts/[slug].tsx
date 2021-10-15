@@ -17,6 +17,8 @@ import CodeBlock from '../../components/article/code-block';
 import HeadingThree from '../../components/article/heading-three';
 import UnorderedList from '../../components/article/unordered-list';
 import Link from '../../components/article/link';
+import Image from '../../components/article/image';
+import OrderedList from '../../components/article/ol';
 
 interface PostProps {
   post: Post;
@@ -30,6 +32,8 @@ const components = {
   ul: (props) => <UnorderedList {...props} />,
   h1: (props) => <HeadingTwo {...props} />,
   a: (props) => <Link {...props} />,
+  img: (props) => <Image {...props} />,
+  ol: (props) => <OrderedList {...props} />,
 };
 
 const MDXContainer = styled.article`

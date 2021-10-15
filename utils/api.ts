@@ -6,12 +6,14 @@ export const getAllPosts = async (): Promise<Post[]> => {
   try {
     const { data }: { data: StrapiPost[] } = await axios.get(`${process.env.STRAPI_URL}/articles`);
 
-    const parsed = data.map((article) => ({
-      ...article,
-      readingTime: Math.round(rTime(article.content).minutes),
-      hero: article.image.url,
-      thumbnail: article.image.formats.thumbnail.url,
-    }));
+    const parsed = data
+      .map((article) => ({
+        ...article,
+        readingTime: Math.round(rTime(article.content).minutes),
+        hero: article.image.url,
+        thumbnail: article.image.formats.thumbnail.url,
+      }))
+      .sort((a, b) => new Date(a.published_at).getTime() - new Date(b.published_at).getTime());
 
     return parsed;
   } catch (error) {

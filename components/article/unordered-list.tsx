@@ -10,6 +10,7 @@ export default styled.ul`
   margin: 0px auto;
   font-size: 18px;
   width: 100%;
+  line-height: 1.756;
   max-width: 680px;
   @media (max-width: 66.875em) {
     max-width: 507px;
