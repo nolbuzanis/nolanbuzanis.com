@@ -87,7 +87,8 @@ function App({ Component, pageProps }: AppProps): JSX.Element {
     <>
       {/* Head */}
       <Head>
-        <title>Nolan Buzanis</title>
+        <title>Nolan Buzanis - Engineer - Writer</title>
+        <meta name='viewport' content='width=device-width, initial-scale=1' />
         <meta property='og:url' content={currentUrl} key='ogurl' />
         <meta property='og:site_name' content='Nolan Buzanis' key='ogsitename' />
         {/* Favicons */}

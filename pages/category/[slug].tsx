@@ -1,4 +1,5 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
+import Head from 'next/head';
 import { getAllCategories, getPostByCategory } from '../../utils/api';
 import ArticleList from '../../components/article-list';
 
@@ -8,10 +9,15 @@ interface CategoryPageProps {
 }
 
 const CategoryPage = ({ posts, slug }: CategoryPageProps): JSX.Element => (
-  <section>
-    <h1>{slug}</h1>
-    <ArticleList items={posts} />
-  </section>
+  <>
+    <Head>
+      <meta name='description' content={`Articles with the category: ${slug}`} />
+    </Head>
+    <section>
+      <h1>{slug}</h1>
+      <ArticleList items={posts} />
+    </section>
+  </>
 );
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { slug } = params;

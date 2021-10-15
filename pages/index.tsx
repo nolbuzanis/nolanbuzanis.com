@@ -1,5 +1,6 @@
 import { GetStaticProps } from 'next';
 import styled from 'styled-components';
+import Head from 'next/head';
 import ArticleList from '../components/article-list';
 import ArticleHero from '../components/article-hero';
 // import { getAllPosts } from '../utils/local-api';
@@ -25,10 +26,18 @@ const HomePage = (props: HomePageProps): JSX.Element => {
   const { posts } = props;
 
   return (
-    <Section>
-      <ArticleHero />
-      <ArticleList items={posts} />
-    </Section>
+    <>
+      <Head>
+        <meta
+          name='description'
+          content='Refreshing narratives on technology, lifestyle, and the environment. Current focus on van build guides.'
+        />
+      </Head>
+      <Section>
+        <ArticleHero />
+        <ArticleList items={posts} />
+      </Section>
+    </>
   );
 };
 
