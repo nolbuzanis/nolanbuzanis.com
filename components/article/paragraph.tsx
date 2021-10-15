@@ -1,3 +1,4 @@
+import { ReactChild } from 'react';
 import styled from 'styled-components';
 
 const StyledP = styled.p`
@@ -22,4 +23,10 @@ const StyledP = styled.p`
   }
 `;
 
-export default StyledP;
+interface ParagraphProps {
+  children: ReactChild;
+}
+
+const Paragraph = ({ children }: ParagraphProps): JSX.Element => <StyledP>{children}</StyledP>;
+
+export default Paragraph;
