@@ -1,11 +1,12 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { AppProps } from 'next/app';
 import '../styles/normalize.css';
 import '../styles/globals.css';
 import { useRouter } from 'next/router';
 import Script from 'next/script';
+import Head from 'next/head';
 import { themes, toggleTheme } from '../utils/theme';
 import Header from '../components/layout/header';
 import ContentContext from '../utils/context';
@@ -77,8 +78,24 @@ function App({ Component, pageProps }: AppProps): JSX.Element {
 
   const isDevelopment = process.env.NODE_ENV === 'development';
 
+  let currentUrl = '';
+  if (typeof window !== 'undefined') {
+    currentUrl = window.location.href;
+  }
+
   return (
     <>
+      {/* Head */}
+      <Head>
+        <title>Nolan Buzanis</title>
+        <meta property='og:url' content={currentUrl} key='ogurl' />
+        <meta property='og:site_name' content='Nolan Buzanis' key='ogsitename' />
+        {/* Favicons */}
+        <link rel='apple-touch-icon' sizes='180x180' href='/apple-touch-icon.png' />
+        <link rel='icon' type='image/png' sizes='32x32' href='/favicon-32x32.png' />
+        <link rel='icon' type='image/png' sizes='16x16' href='/favicon-16x16.png' />
+        <link rel='manifest' href='/site.webmanifest' />
+      </Head>
       {/* Global Site Tag (gtag.js) - Google Analytics */}
       {isDevelopment || (
         <Script

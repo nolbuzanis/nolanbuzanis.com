@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import styled from 'styled-components';
-import Head from 'next/head';
 import ThemeIcon from '../ui/theme-icon';
 import CopyIcon from '../ui/copy-icon';
 
@@ -142,19 +141,8 @@ const Header = ({ toggleTheme }: HeaderProps): JSX.Element => {
   if (typeof window !== 'undefined') {
     currentUrl = window.location.href;
   }
-
   return (
     <HeaderWrapper>
-      <Head>
-        <title>Nolan Buzanis</title>
-        <meta property='og:url' content={currentUrl} key='ogurl' />
-        <meta property='og:site_name' content='Nolan Buzanis' key='ogsitename' />
-        {/* Favicons */}
-        <link rel='apple-touch-icon' sizes='180x180' href='/apple-touch-icon.png' />
-        <link rel='icon' type='image/png' sizes='32x32' href='/favicon-32x32.png' />
-        <link rel='icon' type='image/png' sizes='16x16' href='/favicon-16x16.png' />
-        <link rel='manifest' href='/site.webmanifest' />
-      </Head>
       <Link href='/'>
         <a href='/' aria-label='Home'>
           <SiteLogo />
