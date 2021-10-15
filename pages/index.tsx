@@ -30,7 +30,7 @@ const HomePage = (props: HomePageProps): JSX.Element => {
       <Head>
         <meta
           name='description'
-          content='Refreshing narratives on technology, lifestyle, and the environment. Current focus on van build guides.'
+          content='Refreshing narratives on technology, van build guides, lifestyle, and the environment. Find an topic that interests you and do a deep dive.'
         />
       </Head>
       <Section>
