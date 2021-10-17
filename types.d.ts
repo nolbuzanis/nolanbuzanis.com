@@ -1,3 +1,15 @@
+type SendgridHttpMethod =
+  | 'get'
+  | 'GET'
+  | 'post'
+  | 'POST'
+  | 'put'
+  | 'PUT'
+  | 'patch'
+  | 'PATCH'
+  | 'delete'
+  | 'DELETE';
+
 interface NestedError {
   error: Error | string;
 }

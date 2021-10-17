@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import { Formik } from 'formik';
 import * as yup from 'yup';
+import axios from 'axios';
+import { useState } from 'react';
 import Input from '../input';
 import Button from '../button';
 import MailIcon from './mail-icon';
@@ -11,8 +13,12 @@ const initialValues = {
 };
 
 const validationSchema = yup.object().shape({
-  firstName: yup.string().required('Name is required.'),
-  email: yup.string().email('Please enter a valid email.').required('Please enter a valid email.'),
+  firstName: yup.string().trim().required('Name is required.'),
+  email: yup
+    .string()
+    .trim()
+    .email('Please enter a valid email.')
+    .required('Please enter a valid email.'),
 });
 
 const Background = styled.div`
@@ -51,10 +57,26 @@ const Form = styled.form`
 `;
 
 const NewsletterSection = (): JSX.Element => {
-  const handleFormSubmit = (values, { setSubmitting }) => {
-    setTimeout(() => {
-      setSubmitting(false);
-    }, 300);
+  const [buttonText, setButtonText] = useState('');
+
+  const handleFormSubmit = async (values, { setSubmitting, resetForm }) => {
+    const data = {
+      name: values.firstName.trim(),
+      email: values.email.trim(),
+    };
+
+    try {
+      await axios.post('/api/newsletter', data);
+
+      // success since axios will throw error on non 200 status code
+      setButtonText('Joined!');
+      resetForm();
+      setTimeout(() => setButtonText(''), 3000);
+    } catch (error) {
+      // what to do with error?
+      setButtonText('Please try again.');
+    }
+    setSubmitting(false);
   };
 
   return (
@@ -94,8 +116,12 @@ const NewsletterSection = (): JSX.Element => {
                 errorText={touched.email && (errors.email as string)}
               />
               <Button loading={isSubmitting} onClick={handleSubmit} type='submit'>
-                <MailIcon />
-                Join
+                {buttonText || (
+                  <>
+                    <MailIcon />
+                    Join
+                  </>
+                )}
               </Button>
             </Form>
           )}

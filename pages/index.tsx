@@ -5,7 +5,7 @@ import ArticleList from '../components/article-list';
 import ArticleHero from '../components/article-hero';
 // import { getAllPosts } from '../utils/local-api';
 import { getAllPosts as getAllStrapiPosts } from '../utils/api';
-// import NewsletterSection from '../components/newsletter';
+import NewsletterSection from '../components/newsletter';
 
 interface HomePageProps {
   posts: Post[];
@@ -38,7 +38,7 @@ const HomePage = (props: HomePageProps): JSX.Element => {
         <ArticleHero />
         <ArticleList items={posts} />
       </Section>
-      {/* <NewsletterSection /> */}
+      <NewsletterSection />
     </>
   );
 };
