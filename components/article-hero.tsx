@@ -10,10 +10,10 @@ const HeroText = styled.h1`
     Roboto, Noto, 'Segoe UI', Arial, sans-serif;
   font-style: normal;
   font-weight: 600;
-  font-size: 52px;
+  font-size: 40px;
   line-height: 1.15;
   color: var(--color-text);
-  max-width: 652px;
+  max-width: 752px;
   margin: 100px 0 50px;
   @media only screen and (max-width: 1070px) {
     font-size: 38px;
@@ -24,12 +24,12 @@ const HeroText = styled.h1`
   }
 `;
 
-const AuthorSection = styled.div`
-  display: flex;
-  align-items: center;
-  position: relative;
-  left: -10px;
-`;
+// const AuthorSection = styled.div`
+//   display: flex;
+//   align-items: center;
+//   position: relative;
+//   left: -10px;
+// `;
 
 // const AuthorBio = styled.p`
 //   max-width: 430px;
@@ -58,7 +58,7 @@ const Flex = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 80px;
+  margin-bottom: 60px;
   @media only screen and (max-width: 1070px) {
     margin-bottom: 80px;
   }
@@ -86,10 +86,10 @@ const ArticleHero = (): JSX.Element => {
     <div>
       <HeroText>{config.heroText}</HeroText>
       <Flex>
-        <AuthorSection>
-          {/* <AuthorHeadshot />
+        {/* <AuthorSection> */}
+        {/* <AuthorHeadshot />
           <AuthorBio>Engineer, Writer, Canadian.</AuthorBio> */}
-        </AuthorSection>
+        {/* </AuthorSection> */}
         <IconContainer>
           <IconButton onClick={enableTilesView} aria-label='Grid view'>
             <GridIcon active={grid === 'tiles'} />

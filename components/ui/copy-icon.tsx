@@ -5,7 +5,7 @@ import copyToClipboard from '../../utils/copyToClipboard';
 const Button = styled.button`
   position: relative;
   border-radius: 5px;
-  width: 40px;
+  width: 35px;
   height: 25px;
   display: flex;
   align-items: center;
@@ -77,7 +77,7 @@ const CopyLink = ({ link }: CopyIconProps): JSX.Element => {
     <Button onClick={handleCopy} aria-label='Copy url'>
       <CopyTooltip active={showTooltip}>Copied</CopyTooltip>
       <Svg
-        width={24}
+        width={20}
         height={20}
         viewBox='0 0 24 20'
         fill='none'

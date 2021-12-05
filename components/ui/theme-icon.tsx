@@ -5,14 +5,14 @@ const ThemeButton = styled.button`
   opacity: 0.5;
   position: relative;
   border-radius: 5px;
-  width: 40px;
-  height: 25px;
+  width: 36px;
+  height: 20px;
   transition: opacity 0.25s ease;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  margin-left: 30px;
+  margin-left: 20px;
   &: hover {
     opacity: 1;
   }
@@ -24,8 +24,8 @@ const ThemeButton = styled.button`
 
 const MainCircle = styled.div`
   position: relative;
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
   border: ${(props) => (props.theme.name === 'dark' ? '4px solid #fff' : '2px solid #000')};
   background: var(--color-text);
@@ -35,8 +35,8 @@ const MainCircle = styled.div`
 
   &:after {
     content: '';
-    width: 8px;
-    height: 8px;
+    width: 7px;
+    height: 7px;
     border-radius: 50%;
     margin: -4px 0px 0px -4px;
     position: absolute;
@@ -56,15 +56,15 @@ const MainCircle = styled.div`
 
 const WhiteCircle = styled.div`
   position: absolute;
-  height: 24px;
-  width: 24px;
+  height: 20px;
+  width: 20px;
   border-radius: 50%;
   border: 0;
   background: var(--color-background);
   transform: translate(${(props) => (props.theme.name === 'dark' ? '14px, -14px' : '0, 0')});
   opacity: ${(props) => (props.theme.name === 'dark' ? '0' : '1')};
-  right: -1px;
-  top: -8px;
+  right: 0px;
+  top: -6px;
   transition: background 0.25s ease, color 0.25s ease, transform 0.45s ease;
   overflow: visible;
 `;
