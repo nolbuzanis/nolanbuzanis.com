@@ -4,7 +4,7 @@ import ThemeIcon from '../ui/theme-icon';
 import CopyIcon from '../ui/copy-icon';
 
 const StyledRect = styled.rect`
-  fill: var(--color-text);
+  fill: #2aaa8a;
   transition: fill 0.25s ease;
 `;
 

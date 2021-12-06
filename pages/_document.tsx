@@ -1,5 +1,9 @@
+/* eslint-disable prettier/prettier */
+/* eslint-disable implicit-arrow-linebreak */
+/* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/no-danger */
-import Document, { Html, Head, Main, NextScript } from 'next/document';
+import Document, { Html, Head, Main, NextScript, DocumentContext, DocumentInitialProps } from 'next/document';
+import { ServerStyleSheet } from 'styled-components';
 import { themes } from '../utils/theme';
 
 class MyDocument extends Document {
@@ -38,6 +42,31 @@ const colorMode = getInitialColorMode();
   root.style.setProperty('--initial-color-mode', colorMode);
 }catch(e){console.log('Error loading themes')}
   }())`;
+
+  static async getInitialProps(ctx: DocumentContext): Promise<DocumentInitialProps> {
+    const sheet = new ServerStyleSheet();
+    const originalRenderPage = ctx.renderPage;
+
+    try {
+      ctx.renderPage = () =>
+        originalRenderPage({
+          enhanceApp: (App) => (props) => sheet.collectStyles(<App {...props} />),
+        });
+
+      const initialProps = await Document.getInitialProps(ctx);
+      return {
+        ...initialProps,
+        styles: (
+          <>
+            {initialProps.styles}
+            {sheet.getStyleElement()}
+          </>
+        ),
+      };
+    } finally {
+      sheet.seal();
+    }
+  }
 
   render(): JSX.Element {
     return (

@@ -7,7 +7,7 @@ const StyledButton = styled.button<{ disabled: boolean; width: string }>`
   height: 45px;
   width: ${(props) => props.width || '200px'};
   border: none;
-  background-color: #3d9970;
+  background-color: #2aaa8a;
   border-radius: 5px;
   font-size: 18px;
   padding: 10px;
