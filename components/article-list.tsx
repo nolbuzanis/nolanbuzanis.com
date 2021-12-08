@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import ArticleCard from './article-card';
 import { useContent } from '../utils/context';
+import HeadingThree from './article/heading-three';
 
 interface ArticleListProps {
   items: Post[];
@@ -51,24 +52,28 @@ const ArticleList = ({ items }: ArticleListProps): JSX.Element => {
   const listView = grid === 'list';
   return (
     <div>
-      {splitArray.map((shortArray, i) => (
-        // eslint-disable-next-line react/no-array-index-key
-        <Grid key={i} even={i % 2 === 0} listView={listView}>
-          {shortArray.map((item) => (
-            <ArticleCard
-              key={item.slug}
-              id={item.slug}
-              title={item.title}
-              img={item.hero}
-              description={item.description}
-              timeToRead={item.readingTime}
-              listView={listView}
-              date={item.published_at}
-              category={item.category}
-            />
-          ))}
-        </Grid>
-      ))}
+      {items.length > 1 ? (
+        splitArray.map((shortArray, i) => (
+          // eslint-disable-next-line react/no-array-index-key
+          <Grid key={i} even={i % 2 === 0} listView={listView}>
+            {shortArray.map((item) => (
+              <ArticleCard
+                key={item.slug}
+                id={item.slug}
+                title={item.title}
+                img={item.hero}
+                description={item.description}
+                timeToRead={item.readingTime}
+                listView={listView}
+                date={item.published_at}
+                category={item.category}
+              />
+            ))}
+          </Grid>
+        ))
+      ) : (
+        <HeadingThree>No articles to show at the moment. Please come back later!</HeadingThree>
+      )}
     </div>
   );
 };
