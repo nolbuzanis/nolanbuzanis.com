@@ -10,6 +10,7 @@ import WritingIcon from '../components/ui/writing-icon';
 import config from '../config';
 import Link from '../components/article/link';
 import DiagonalArrow from '../components/ui/diagonal-arrow';
+import TimelineIcon from '../components/ui/timeline-icon';
 
 // const RandomColour = () => {
 //   const RandomValue = () => Math.round(Math.random() * 155 + 100);
@@ -135,10 +136,10 @@ const HomePage = (): JSX.Element => (
       <Box size={4}>
         <AboutMe />
       </Box>
-      <Box size={2} backgroundColor={backgrounds[1]} onClick={() => router.push('/writing')}>
+      <Box size={2} backgroundColor={backgrounds[0]} onClick={() => router.push('/timeline')}>
         <Center>
-          <WritingIcon scale={1.5} color='var(--color-text)' />
-          Writing
+          <TimelineIcon scale={2} color='var(--color-text)' />
+          My Experience
         </Center>
       </Box>
       <Box backgroundColor='#1DA1F2' onClick={() => window.open(config.social.twitter)}>
@@ -150,6 +151,17 @@ const HomePage = (): JSX.Element => (
         <Icon>
           <LinkedinIcon scale={2} color='var(--color-text)' />
         </Icon>
+      </Box>
+      <Box
+        size={2}
+        onClick={() => router.push('/writing')}
+        backgroundColor='var(--color-text)'
+        textColor='var(--color-background)'
+      >
+        <Center>
+          <WritingIcon scale={1.5} color='var(--color-background)' />
+          Writing
+        </Center>
       </Box>
       <Box onClick={() => window.open(config.social.github)}>
         <Icon>

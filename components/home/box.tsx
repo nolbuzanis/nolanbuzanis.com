@@ -16,7 +16,7 @@ const BoxContainer = styled.div<BoxProps>`
   aspect-ratio: 1;
   transition: 0.3s ease all;
   box-shadow: var(--color-shadow-elevation-medium);
-  color: var(--color-text);
+  color: ${(props) => props.textColor};
   ${(props) => props.onClick && 'cursor: pointer;'}
 
   &:hover {
@@ -33,6 +33,7 @@ const BoxContainer = styled.div<BoxProps>`
 
 interface BoxProps {
   backgroundColor?: string;
+  textColor?: string;
   size?: 1 | 2 | 3 | 4;
   onClick?: VoidFunction;
 }
@@ -42,8 +43,14 @@ const Box = ({
   backgroundColor,
   size,
   onClick,
+  textColor,
 }: BoxProps & { children: React.ReactChild }): JSX.Element => (
-  <BoxContainer backgroundColor={backgroundColor} size={size} onClick={onClick}>
+  <BoxContainer
+    backgroundColor={backgroundColor}
+    size={size}
+    onClick={onClick}
+    textColor={textColor}
+  >
     {children}
   </BoxContainer>
 );
@@ -52,6 +59,7 @@ Box.defaultProps = {
   backgroundColor: 'none',
   size: 1,
   onClick: null,
+  textColor: 'var(--color-text)',
 };
 
 export default Box;
