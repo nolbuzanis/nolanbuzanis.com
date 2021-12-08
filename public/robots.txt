@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://nolanbuzanis.com
+
+# Sitemaps
+Sitemap: https://nolanbuzanis.com/sitemap.xml

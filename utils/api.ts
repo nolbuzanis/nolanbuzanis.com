@@ -3,6 +3,7 @@ import axios from 'axios';
 import rTime from 'reading-time';
 
 export const getAllPosts = async (): Promise<Post[]> => {
+  return [];
   try {
     const { data }: { data: StrapiPost[] } = await axios.get(`${process.env.STRAPI_URL}/articles`);
 
@@ -28,6 +29,7 @@ export const getPostBySlug = async (slugToMatch: string): Promise<Post | NestedE
     `${process.env.STRAPI_URL}/articles?slug=${slugToMatch}`,
   );
 
+  return { error: 'No post found!' };
   if (data && data[0]) {
     const [article] = data;
     return {
@@ -42,6 +44,7 @@ export const getPostBySlug = async (slugToMatch: string): Promise<Post | NestedE
 };
 
 export const getPostByCategory = async (slugToMatch: string): Promise<Post[] | NestedError> => {
+  return { error: 'No posts with this category found!' };
   const { data }: { data: StrapiPost[] } = await axios.get(
     `${process.env.STRAPI_URL}/articles?category.slug=${slugToMatch}`,
   );
@@ -60,6 +63,7 @@ export const getPostByCategory = async (slugToMatch: string): Promise<Post[] | N
 };
 
 export const getAllCategories = async (): Promise<Category[]> => {
+  return [];
   const { data }: { data: Category[] } = await axios.get(`${process.env.STRAPI_URL}/categories`);
 
   return data;
