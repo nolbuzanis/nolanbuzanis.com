@@ -119,7 +119,7 @@ const SiteTitle = styled.h1`
   position: relative;
   top: -4px;
   font-family: 'Merriweather', Georgia, Serif;
-  margin: 0 0 0 15px;
+  margin: 0 15px;
   transition: color 0.25s ease;
   color: var(--color-text);
   @media only screen and (max-width: 540px) {
@@ -130,6 +130,20 @@ const SiteTitle = styled.h1`
 const IconContainer = styled.div`
   display: flex;
   align-items: center;
+`;
+
+const Menu = styled.nav`
+  display: flex;
+`;
+
+const MenuLink = styled.a`
+  font-size: 16px;
+  display: inline-block;
+  padding: 5px;
+  margin-left: 20px;
+  cursor: pointer;
+  font-weight: 500;
+  color: var(--color-text);
 `;
 
 interface HeaderProps {
@@ -143,12 +157,20 @@ const Header = ({ toggleTheme }: HeaderProps): JSX.Element => {
   }
   return (
     <HeaderWrapper>
-      <Link href='/'>
-        <a href='/' aria-label='Home'>
-          <SiteLogo />
-          <SiteTitle>Nolan Buzanis</SiteTitle>
-        </a>
-      </Link>
+      <Menu>
+        <Link href='/'>
+          <a href='/' aria-label='Home'>
+            <SiteLogo />
+            <SiteTitle>Nolan Buzanis</SiteTitle>
+          </a>
+        </Link>
+        <Link href='/'>
+          <MenuLink>About</MenuLink>
+        </Link>
+        <Link href='/writing'>
+          <MenuLink>Writing</MenuLink>
+        </Link>
+      </Menu>
       <IconContainer>
         <CopyIcon link={currentUrl} />
         <ThemeIcon onClick={toggleTheme} />
