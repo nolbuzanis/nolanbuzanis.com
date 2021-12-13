@@ -14,6 +14,7 @@ interface InputProps {
 
 const Container = styled.div<{ width: string }>`
   width: ${(props) => props.width || '100%'};
+  padding-top: 10px;
   margin: 0 20px 0 0;
   color: var(--color-article);
   @media only screen and (max-width: 540px) {
@@ -60,7 +61,6 @@ const StyledInput = styled.input`
 const ErrorLabel = styled.span`
   display: block;
   position: relative;
-  height: 0;
   color: var(--color-title-hover);
   font-size: 12px;
   top: 5px;

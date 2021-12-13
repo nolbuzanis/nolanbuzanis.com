@@ -24,7 +24,7 @@ const StyledButton = styled.button<{ disabled: boolean; width: string }>`
 interface ButtonProps {
   disabled?: boolean;
   loading?: boolean;
-  onClick: () => void;
+  onClick?: () => void;
   // eslint-disable-next-line react/require-default-props
   width?: string;
   type?: 'button' | 'submit';
@@ -48,6 +48,7 @@ Button.defaultProps = {
   disabled: false,
   loading: false,
   type: 'button',
+  onClick: () => {},
 };
 
 export default Button;

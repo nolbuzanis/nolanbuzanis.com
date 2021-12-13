@@ -1,7 +1,34 @@
 import Link from 'next/link';
 import styled from 'styled-components';
+import Modal from 'react-modal';
+import { useEffect, useState } from 'react';
 import ThemeIcon from '../ui/theme-icon';
 import CopyIcon from '../ui/copy-icon';
+import Popup from '../newsletter/popup';
+
+const customStyles = {
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+    background: 'var(--color-background)',
+    border: 'none',
+    borderRadius: 15,
+    padding: 0,
+    boxShadow: 'var(--color-shadow-elevation-low)',
+  },
+  overlay: {
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    zIndex: 101,
+  },
+};
+
+Modal.setAppElement('#__next');
+
+// Make sure to bind modal to your appElement (https://reactcommunity.org/react-modal/accessibility/)
 
 const StyledRect = styled.rect`
   fill: #2aaa8a;
@@ -67,37 +94,6 @@ const SiteLogo = () => (
     </g>
   </svg>
 );
-
-// const MillenniumLogo = () => (
-//   <svg
-//     // width={100}
-//     height={22}
-//     viewBox='0 0 208 170'
-//     fill='none'
-//     xmlns='http://www.w3.org/2000/svg'
-//   >
-//     <StyledRect width='39.7452' height='148.382' fill='#E5E4E2' />
-//     <StyledRect
-//       x='11.9236'
-//       y='28.1041'
-//       width='39.7452'
-//       height='87.16'
-//       transform='rotate(-45 11.9236 28.1041)'
-//       fill='#E5E4E2'
-//     />
-//     <StyledRect x='168.255' width='39.7452' height='148.382' fill='#E5E4E2' />
-//     <StyledRect
-//       x='167.63'
-//       y='0.121368'
-//       width='39.7452'
-//       height='130.269'
-//       transform='rotate(45 167.63 0.121368)'
-//       fill='#E5E4E2'
-//     />
-//     <StyledRect y='156.331' width={208} height='13.2484' fill='#E5E4E2' />
-//   </svg>
-// );
-
 const HeaderWrapper = styled.section`
   max-width: 1220px;
   margin: 0 auto;
@@ -146,17 +142,43 @@ const MenuLink = styled.a`
   color: var(--color-text);
 `;
 
+const SubscribeButton = styled.button`
+  font-size: 16px;
+  display: inline-block;
+  padding: 5px;
+  margin-left: 20px;
+  cursor: pointer;
+  font-weight: 500;
+  color: var(--color-text);
+`;
+
 interface HeaderProps {
   toggleTheme: () => void;
 }
 
 const Header = ({ toggleTheme }: HeaderProps): JSX.Element => {
+  const [modalOpen, setModalOpen] = useState(true);
+
   let currentUrl = '';
   if (typeof window !== 'undefined') {
     currentUrl = window.location.href;
   }
+
+  const toggleModal = () => setModalOpen((prev) => !prev);
+
+  useEffect(() => {
+    if (modalOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+  }, [modalOpen]);
+
   return (
     <HeaderWrapper>
+      <Modal isOpen={modalOpen} onRequestClose={toggleModal} style={customStyles}>
+        <Popup />
+      </Modal>
       <Menu>
         <Link href='/'>
           <a href='/' aria-label='Home'>
@@ -170,6 +192,9 @@ const Header = ({ toggleTheme }: HeaderProps): JSX.Element => {
         <Link href='/writing'>
           <MenuLink>Writing</MenuLink>
         </Link>
+        <SubscribeButton onClick={toggleModal} type='button'>
+          Subscribe
+        </SubscribeButton>
       </Menu>
       <IconContainer>
         <CopyIcon link={currentUrl} />
