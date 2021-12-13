@@ -98,7 +98,6 @@ const SiteLogo = () => (
 const HeaderWrapper = styled.section`
   max-width: 1220px;
   margin: 0 auto;
-  width: 100%:
   padding: 60px 4rem 0;
   display: flex;
   justify-content: space-between;
