@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import copyToClipboard from '../../utils/copyToClipboard';
+import copyToClipboard from '../../lib/copyToClipboard';
 
 const Button = styled.button`
   position: absolute;

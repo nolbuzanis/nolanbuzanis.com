@@ -6,7 +6,7 @@ import { MDXRemote } from 'next-mdx-remote';
 import Head from 'next/head';
 // import { getAllPosts, getPostBySlug } from '../../utils/local-api';
 
-import { getAllPosts, getPostBySlug } from '../../utils/api';
+import { getAllPosts, getPostBySlug } from '../../lib/api';
 
 // components
 import StyledP from '../../components/article/paragraph';

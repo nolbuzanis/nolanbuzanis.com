@@ -7,12 +7,12 @@ import '../styles/globals.css';
 import { useRouter } from 'next/router';
 import Script from 'next/script';
 import Head from 'next/head';
-import { themes, toggleTheme } from '../utils/theme';
+import { themes, toggleTheme } from '../lib/theme';
 import Header from '../components/layout/header';
-import ContentContext from '../utils/context';
+import ContentContext from '../lib/context';
 import Footer from '../components/layout/footer';
 import Gradient from '../components/layout/gradient';
-import { pageview } from '../utils/ga';
+import { pageview } from '../lib/ga';
 import '../styles/prism-material-dark.css';
 
 const Content = styled.main`

@@ -2,9 +2,16 @@
 /* eslint-disable implicit-arrow-linebreak */
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/no-danger */
-import Document, { Html, Head, Main, NextScript, DocumentContext, DocumentInitialProps } from 'next/document';
+import Document, {
+  Html,
+  Head,
+  Main,
+  NextScript,
+  DocumentContext,
+  DocumentInitialProps,
+} from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
-import { themes } from '../utils/theme';
+import { themes } from '../lib/theme';
 
 class MyDocument extends Document {
   codeToRun = `(function(){
