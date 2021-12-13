@@ -157,7 +157,7 @@ interface HeaderProps {
 }
 
 const Header = ({ toggleTheme }: HeaderProps): JSX.Element => {
-  const [modalOpen, setModalOpen] = useState(true);
+  const [modalOpen, setModalOpen] = useState(false);
 
   let currentUrl = '';
   if (typeof window !== 'undefined') {

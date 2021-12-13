@@ -40,7 +40,7 @@ const Container = styled.div`
 const Popup = (): JSX.Element => {
   const addSubscriber = async (formValues, { setSubmitting, resetForm, setFieldError }) => {
     setSubmitting(true);
-    const url = 'http://newsletter.nolanbuzanis.com/add_subscriber';
+    const url = 'https://newsletter.nolanbuzanis.com/add_subscriber';
 
     const data = {
       member_email: formValues.email,
