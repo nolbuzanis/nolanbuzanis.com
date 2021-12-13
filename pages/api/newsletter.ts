@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import sgClient from '@sendgrid/client';
-import { newsletterSchema } from '../../utils/schema';
+import { newsletterSchema } from '../../lib/schema';
 
 const SENDGRID_NEWSLETTER_ID = '237c4ef5-cdbe-4265-928f-34df7b870f43';
 

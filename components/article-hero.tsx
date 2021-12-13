@@ -2,7 +2,7 @@ import styled from 'styled-components';
 // import AuthorHeadshot from './author-headshot';
 import GridIcon from './ui/grid-icon';
 import ListIcon from './ui/list-icon';
-import { useContent } from '../utils/context';
+import { useContent } from '../lib/context';
 import config from '../config';
 
 const HeroText = styled.h1`
