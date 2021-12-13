@@ -55,7 +55,8 @@ export const themes: {
     ...BaseTheme,
   },
   dark: {
-    background: '#111216',
+    // background: '#111216',
+    background: 'hsl(210deg, 30%, 8%)',
     text: '#FFFFFF',
     title: '#FFFFFF',
     'title-hover': '#E9DAAC',
