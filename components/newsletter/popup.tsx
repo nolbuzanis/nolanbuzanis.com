@@ -2,6 +2,7 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
 import styled from 'styled-components';
+import { useState } from 'react';
 import Button from '../button';
 import Input from '../input';
 
@@ -16,7 +17,7 @@ const initialValues = {
 };
 
 const Spacing = styled.div`
-  height: 20px;
+  height: 10px;
 `;
 
 const RevueLink = styled.a`
@@ -36,20 +37,27 @@ const Line = styled.div`
 const Container = styled.div`
   max-width: 400px;
   padding: 20px;
+  background: var(--color-background);
+  border-radius: 15px;
+  margin: 15px;
 `;
-const Popup = (): JSX.Element => {
-  const addSubscriber = async (formValues, { setSubmitting, resetForm, setFieldError }) => {
-    setSubmitting(true);
-    const url = 'https://newsletter.nolanbuzanis.com/add_subscriber';
+const SuccessMessage = styled.div`
+  padding: 15px;
+  background: rgba(16, 185, 129, 0.1);
+  color: rgb(4, 120, 87);
+  margin-top: 15px;
+`;
 
-    const data = {
-      member_email: formValues.email,
-      member_first_name: formValues.firstName,
-    };
+const Popup = (): JSX.Element => {
+  const [success, setSuccess] = useState(false);
+
+  const addSubscriber = async (formValues, { setSubmitting, setFieldError }) => {
+    setSubmitting(true);
+    const url = '/api/newsletter';
 
     try {
-      await axios.post(url, data);
-      resetForm();
+      await axios.post(url, formValues);
+      setSuccess(true);
     } catch (error) {
       setFieldError('email', 'Error submitting request, please try again.');
       // eslint-disable-next-line no-console
@@ -73,6 +81,7 @@ const Popup = (): JSX.Element => {
       >
         {({ handleSubmit, values, isSubmitting, handleChange, errors }) => (
           <form onSubmit={handleSubmit}>
+            <Spacing />
             <Input
               id='email'
               type='email'
@@ -90,7 +99,6 @@ const Popup = (): JSX.Element => {
               autoComplete='on'
               errorText={errors.firstName as string}
             />
-            <Spacing />
             <Button loading={isSubmitting} type='submit'>
               Subscribe
             </Button>
@@ -106,6 +114,11 @@ const Popup = (): JSX.Element => {
               </RevueLink>
               .
             </Disclaimer>
+            {success && (
+              <SuccessMessage>
+                {`A confirmation email was sent to ${values.email} - go click the link!`}
+              </SuccessMessage>
+            )}
           </form>
         )}
       </Formik>

@@ -14,7 +14,6 @@ interface InputProps {
 
 const Container = styled.div<{ width: string }>`
   width: ${(props) => props.width || '100%'};
-  padding-top: 10px;
   margin: 0 20px 0 0;
   color: var(--color-article);
   @media only screen and (max-width: 540px) {

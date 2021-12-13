@@ -14,9 +14,10 @@ const customStyles = {
     bottom: 'auto',
     marginRight: '-50%',
     transform: 'translate(-50%, -50%)',
-    background: 'var(--color-background)',
+    // background: 'var(--color-background)',
     border: 'none',
-    borderRadius: 15,
+    // borderRadius: 15,
+    background: 'none',
     padding: 0,
     boxShadow: 'var(--color-shadow-elevation-low)',
   },
@@ -97,6 +98,7 @@ const SiteLogo = () => (
 const HeaderWrapper = styled.section`
   max-width: 1220px;
   margin: 0 auto;
+  width: 100%:
   padding: 60px 4rem 0;
   display: flex;
   justify-content: space-between;
@@ -105,7 +107,7 @@ const HeaderWrapper = styled.section`
     max-width: 850px;
   }
   @media only screen and (max-width: 540px) {
-    padding-top: 50px;
+    padding: 50px 20px 0;
   }
 `;
 
@@ -186,9 +188,9 @@ const Header = ({ toggleTheme }: HeaderProps): JSX.Element => {
             <SiteTitle>Nolan Buzanis</SiteTitle>
           </a>
         </Link>
-        <Link href='/'>
+        {/* <Link href='/'>
           <MenuLink>About</MenuLink>
-        </Link>
+        </Link> */}
         <Link href='/writing'>
           <MenuLink>Writing</MenuLink>
         </Link>
