@@ -83,6 +83,14 @@ const Popup = (): JSX.Element => {
           <form onSubmit={handleSubmit}>
             <Spacing />
             <Input
+              id='firstName'
+              label='First Name'
+              value={values.firstName}
+              onChange={handleChange}
+              autoComplete='on'
+              errorText={errors.firstName as string}
+            />
+            <Input
               id='email'
               type='email'
               label='Email'
@@ -91,14 +99,7 @@ const Popup = (): JSX.Element => {
               autoComplete='on'
               errorText={errors.email as string}
             />
-            <Input
-              id='firstName'
-              label='First Name'
-              value={values.firstName}
-              onChange={handleChange}
-              autoComplete='on'
-              errorText={errors.firstName as string}
-            />
+            <Spacing />
             <Button loading={isSubmitting} type='submit'>
               Subscribe
             </Button>
