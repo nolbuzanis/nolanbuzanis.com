@@ -12,7 +12,7 @@ interface AllPostsProps {
 }
 
 const Section = styled.section`
-  padding: 0 4em;
+  padding: 160px 4em 0;
   max-width: 1220px;
   margin: 0 auto;
   @media only screen and (max-width: 66.875em) {

@@ -90,6 +90,7 @@ const Popup = (): JSX.Element => {
               autoComplete='on'
               errorText={errors.firstName as string}
             />
+            <Spacing />
             <Input
               id='email'
               type='email'
