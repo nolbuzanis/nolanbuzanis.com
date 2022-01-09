@@ -1,7 +1,9 @@
+/* eslint-disable operator-linebreak */
 import Link from 'next/link';
 import styled from 'styled-components';
 import Modal from 'react-modal';
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 import ThemeIcon from '../ui/theme-icon';
 import CopyIcon from '../ui/copy-icon';
 import Popup from '../newsletter/popup';
@@ -19,7 +21,6 @@ const customStyles = {
     // borderRadius: 15,
     background: 'none',
     padding: 0,
-    boxShadow: 'var(--color-shadow-elevation-low)',
   },
   overlay: {
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
@@ -32,7 +33,8 @@ Modal.setAppElement('#__next');
 // Make sure to bind modal to your appElement (https://reactcommunity.org/react-modal/accessibility/)
 
 const StyledRect = styled.rect`
-  fill: #2aaa8a;
+  // fill: #2aaa8a;
+  fill: var(--color-text);
   transition: fill 0.25s ease;
 `;
 
@@ -95,13 +97,24 @@ const SiteLogo = () => (
     </g>
   </svg>
 );
-const HeaderWrapper = styled.section`
+const HeaderWrapper = styled.section<{ overrideColor: string }>`
   max-width: 1220px;
   margin: 0 auto;
-  padding: 60px 4rem 0;
+  padding: 40px 4rem 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  ${(props) =>
+    // eslint-disable-next-line implicit-arrow-linebreak
+    props.overrideColor &&
+    `
+  * {
+    color: ${props.overrideColor} !important;
+    fill: ${props.overrideColor} !important;
+  }
+  
+  `}
+
   @media only screen and (max-width: 66.875em) {
     max-width: 850px;
   }
@@ -110,12 +123,19 @@ const HeaderWrapper = styled.section`
   }
 `;
 
+const Container = styled.div`
+  position: fixed;
+  z-index: 10;
+  width: 100%;
+`;
+
 const SiteTitle = styled.h1`
   display: inline-block;
-  font-weight: 500;
+  font-weight: 400;
+  font-size: 27px;
   position: relative;
   top: -4px;
-  font-family: 'Merriweather', Georgia, Serif;
+  // font-family: 'Merriweather', Georgia, Serif;
   margin: 0 15px;
   transition: color 0.25s ease;
   color: var(--color-text);
@@ -131,26 +151,41 @@ const IconContainer = styled.div`
 
 const Menu = styled.nav`
   display: flex;
+  align-items: center;
 `;
 
 const MenuLink = styled.a`
-  font-size: 16px;
+  font-size: 14px;
   display: inline-block;
-  padding: 5px;
+  height: 44px;
+  padding: 15px;
   margin-left: 20px;
   cursor: pointer;
-  font-weight: 500;
+  font-weight: 700;
   color: var(--color-text);
+  height: 44px;
+  padding: 15px;
+  border-radius: 20px;
+  transition: background-color 0.3s ease;
+  &:hover {
+    background-color: hsla(0, 0%, 98%, 0.15);
+  }
 `;
 
 const SubscribeButton = styled.button`
-  font-size: 16px;
+  font-size: 14px;
   display: inline-block;
-  padding: 5px;
   margin-left: 20px;
   cursor: pointer;
-  font-weight: 500;
+  font-weight: 700;
   color: var(--color-text);
+  height: 44px;
+  padding: 15px;
+  border-radius: 20px;
+  transition: background-color 0.3s ease;
+  &:hover {
+    background-color: hsla(0, 0%, 98%, 0.15);
+  }
 `;
 
 interface HeaderProps {
@@ -159,6 +194,9 @@ interface HeaderProps {
 
 const Header = ({ toggleTheme }: HeaderProps): JSX.Element => {
   const [modalOpen, setModalOpen] = useState(false);
+  const [overrideColor, setOverrideColor] = useState<string>();
+
+  const { pathname } = useRouter();
 
   let currentUrl = '';
   if (typeof window !== 'undefined') {
@@ -175,33 +213,43 @@ const Header = ({ toggleTheme }: HeaderProps): JSX.Element => {
     }
   }, [modalOpen]);
 
+  useEffect(() => {
+    if (pathname === '/') {
+      setOverrideColor('#fff');
+    } else {
+      setOverrideColor('');
+    }
+  }, [pathname]);
+
   return (
-    <HeaderWrapper>
-      <Modal isOpen={modalOpen} onRequestClose={toggleModal} style={customStyles}>
-        <Popup />
-      </Modal>
-      <Menu>
-        <Link href='/'>
-          <a href='/' aria-label='Home'>
-            <SiteLogo />
-            <SiteTitle>Nolan Buzanis</SiteTitle>
-          </a>
-        </Link>
-        {/* <Link href='/'>
+    <Container>
+      <HeaderWrapper overrideColor={overrideColor}>
+        <Modal isOpen={modalOpen} onRequestClose={toggleModal} style={customStyles}>
+          <Popup />
+        </Modal>
+        <Menu>
+          <Link href='/'>
+            <a href='/' aria-label='Home'>
+              <SiteLogo />
+              <SiteTitle>Nolan Buzanis</SiteTitle>
+            </a>
+          </Link>
+          {/* <Link href='/'>
           <MenuLink>About</MenuLink>
         </Link> */}
-        <Link href='/writing'>
-          <MenuLink>Writing</MenuLink>
-        </Link>
-        <SubscribeButton onClick={toggleModal} type='button'>
-          Subscribe
-        </SubscribeButton>
-      </Menu>
-      <IconContainer>
-        <CopyIcon link={currentUrl} />
-        <ThemeIcon onClick={toggleTheme} />
-      </IconContainer>
-    </HeaderWrapper>
+          <Link href='/writing'>
+            <MenuLink>Writing</MenuLink>
+          </Link>
+          <SubscribeButton onClick={toggleModal} type='button'>
+            Subscribe
+          </SubscribeButton>
+        </Menu>
+        <IconContainer>
+          <CopyIcon link={currentUrl} />
+          <ThemeIcon onClick={toggleTheme} />
+        </IconContainer>
+      </HeaderWrapper>
+    </Container>
   );
 };
 
