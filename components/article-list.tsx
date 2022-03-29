@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import ArticleCard from './article-card';
-import { useContent } from '../utils/context';
+import { useContent } from '../lib/context';
 import HeadingThree from './article/heading-three';
 
 interface ArticleListProps {

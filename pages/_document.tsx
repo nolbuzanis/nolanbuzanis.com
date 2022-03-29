@@ -2,9 +2,16 @@
 /* eslint-disable implicit-arrow-linebreak */
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/no-danger */
-import Document, { Html, Head, Main, NextScript, DocumentContext, DocumentInitialProps } from 'next/document';
+import Document, {
+  Html,
+  Head,
+  Main,
+  NextScript,
+  DocumentContext,
+  DocumentInitialProps,
+} from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
-import { themes } from '../utils/theme';
+import { themes } from '../lib/theme';
 
 class MyDocument extends Document {
   codeToRun = `(function(){
@@ -77,6 +84,10 @@ const colorMode = getInitialColorMode();
           <link rel='preconnect' href='https://fonts.gstatic.com' />
           <link
             href='https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap'
+            rel='stylesheet'
+          />
+          <link
+            href='https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap'
             rel='stylesheet'
           />
           {/* Complicated Theme code */}

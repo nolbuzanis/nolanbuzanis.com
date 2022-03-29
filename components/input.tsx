@@ -60,7 +60,6 @@ const StyledInput = styled.input`
 const ErrorLabel = styled.span`
   display: block;
   position: relative;
-  height: 0;
   color: var(--color-title-hover);
   font-size: 12px;
   top: 5px;

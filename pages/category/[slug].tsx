@@ -1,6 +1,6 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
 import Head from 'next/head';
-import { getAllCategories, getPostByCategory } from '../../utils/api';
+import { getAllCategories, getPostByCategory } from '../../lib/api';
 import ArticleList from '../../components/article-list';
 
 interface CategoryPageProps {

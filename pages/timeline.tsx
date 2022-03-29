@@ -3,7 +3,7 @@ import Timeline from '../components/timeline';
 import Header from '../components/article/heading-two';
 
 const Spacing = styled.div`
-  height: 50px;
+  height: 166px;
 `;
 const TimelinePage = (): JSX.Element => (
   <section>
